@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tiffany and Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --ivory:#F4EFE6; --ivory-2:#EBE4D8; --linen:#DFD6C7;
+  --onyx:#121110; --onyx-2:#1E1C1A; --graphite:#3A3733; --ash:#6E6963; --mist:#A39D94;
+  --gold:#B8955A; --gold-2:#D4B87C; --gold-dark:#8C6E3B;
+  --bordeaux:#5B1F2B; --moss:#3F4A3A;
+  --ok:#3F6B4F; --warn:#9A6B1F; --bad:#8C2F39;
+  --r:2px;
+  --shadow:0 30px 80px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--onyx);color:var(--ivory);font-family:"Jost",system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;padding:0 16px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+input,select,textarea{font:inherit}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;text-wrap:balance}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+/* ---------- stage ---------- */
+.stage{min-height:100%;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:32px;padding-block:32px}
+.brief{max-width:300px;justify-self:end;display:flex;flex-direction:column;gap:22px}
+.brief .wordmark{font-family:"Cormorant Garamond",serif;font-size:34px;letter-spacing:.08em;line-height:1;color:var(--ivory)}
+.brief .wordmark small{display:block;font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+.brief p{margin:0;color:var(--mist);font-size:14px;line-height:1.55;max-width:38ch}
+.brief .index{display:grid;gap:2px}
+.brief .index button{display:flex;justify-content:space-between;align-items:baseline;padding:9px 12px;border:1px solid transparent;color:var(--mist);font-size:13px;letter-spacing:.04em;text-align:left;transition:.2s}
+.brief .index button span:last-child{font-family:"Cormorant Garamond",serif;font-size:14px;color:var(--gold-dark)}
+.brief .index button:hover,.brief .index button.on{border-color:var(--gold-dark);color:var(--ivory)}
+.brief .note{border-top:1px solid var(--graphite);padding-top:14px;font-size:12px;color:var(--ash)}
+.notes{max-width:300px;justify-self:start;display:flex;flex-direction:column;gap:14px;color:var(--mist);font-size:13px;line-height:1.5}
+.notes h3{color:var(--ivory);font-size:22px}
+.notes dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.notes dt{color:var(--gold);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding-top:3px}
+.notes dd{margin:0}
+
+/* ---------- phone ---------- */
+.phone{width:400px;height:840px;border-radius:52px;background:#0a0908;padding:12px;box-shadow:var(--shadow),inset 0 0 0 1px #2a2724;position:relative}
+.phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:112px;height:30px;border-radius:20px;background:#0a0908;z-index:5}
+.app{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:var(--ivory);color:var(--onyx);display:flex;flex-direction:column}
+@media (max-width:1100px){.stage{grid-template-columns:1fr;justify-items:center}.brief,.notes{max-width:400px;justify-self:center}.brief{order:-1}}
+@media (max-width:480px){
+  body{padding:0}
+  .stage{padding-block:0;gap:0}
+  .brief,.notes{display:none}
+  .phone{width:100%;height:100%;min-height:100svh;border-radius:0;padding:0;box-shadow:none}
+  .phone::before{display:none}
+  .app{border-radius:0}
+}
+
+/* ---------- app chrome ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:56px 22px 10px;flex:0 0 auto}
+.topbar .wm{font-family:"Cormorant Garamond",serif;font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.topbar .wm em{font-style:italic;text-transform:none;letter-spacing:.02em;color:var(--gold-dark)}
+.topbar .chip{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);display:flex;align-items:center;gap:6px}
+.topbar .chip i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+.screens{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative}
+.screens::-webkit-scrollbar{display:none}
+.screen{display:none;padding:6px 22px 120px;animation:fade .35s ease}
+.screen.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}.shimmer{animation:none}}
+
+.tabs{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);padding:10px 12px calc(18px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(244,239,230,0) 0%,var(--ivory) 30%);z-index:4}
+.tabs button{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);padding:6px 0}
+.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.tabs button.on{color:var(--onyx)}
+.tabs button.on::after{content:"";width:14px;height:1px;background:var(--gold)}
+
+.mic{position:absolute;right:20px;bottom:96px;width:56px;height:56px;border-radius:50%;background:var(--onyx);color:var(--ivory);display:grid;place-items:center;box-shadow:0 12px 30px rgba(18,17,16,.35);z-index:7;transition:transform .2s}
+.mic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round}
+.mic:active{transform:scale(.94)}
+.mic.live{background:var(--bordeaux)}
+.mic.live::before,.mic.live::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--bordeaux);animation:ring 1.6s infinite}
+.mic.live::after{animation-delay:.8s}
+@keyframes ring{from{transform:scale(1);opacity:.7}to{transform:scale(1.5);opacity:0}}
+.mic.edit{background:var(--gold-dark)}
+
+/* ---------- components ---------- */
+.h-page{margin:6px 0 4px;font-size:34px;line-height:1.02}
+.h-page i{color:var(--gold-dark)}
+.sub{color:var(--ash);font-size:13px;margin:0 0 18px;line-height:1.5}
+.section{margin-top:26px}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.section-h h3{font-size:22px}
+.section-h button{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);border-bottom:1px solid var(--gold-2);padding-bottom:1px}
+.hr{border:0;border-top:1px solid var(--linen);margin:22px 0}
+
+.dark{background:var(--onyx);color:var(--ivory)}
+.dark .eyebrow{color:var(--gold-2)}
+.dark .sub{color:var(--mist)}
+
+.hero{position:relative;padding:22px 20px 20px;overflow:hidden;border-radius:var(--r)}
+.hero .bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 100% 0%,#2b2622 0%,var(--onyx) 60%)}
+.hero>*{position:relative}
+.hero h2{font-size:30px;line-height:1.05;margin:6px 0 10px}
+.hero .fig{position:absolute;right:-6px;bottom:-12px;width:118px;height:210px;opacity:.95}
+.hero .pieces{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ivory);max-width:60%}
+.hero .pieces span::before{content:"";display:inline-block;width:5px;height:5px;background:var(--gold);margin-right:8px;vertical-align:middle}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.btn{font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 16px;border:1px solid var(--onyx);color:var(--onyx);background:transparent;transition:.2s;font-weight:500}
+.btn.solid{background:var(--onyx);color:var(--ivory)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--onyx)}
+.dark .btn{border-color:var(--ivory);color:var(--ivory)}
+.dark .btn.gold{background:var(--gold);border-color:var(--gold);color:var(--onyx)}
+.btn.sm{padding:8px 12px;font-size:10px}
+.btn:hover{opacity:.85}
+.btn.wide{width:100%;text-align:center}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips.scroll{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -22px;padding:0 22px}
+.chips.scroll::-webkit-scrollbar{display:none}
+.chip-b{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--linen);color:var(--graphite);white-space:nowrap;transition:.15s;background:transparent}
+.chip-b.on{background:var(--onyx);color:var(--ivory);border-color:var(--onyx)}
+.chip-b.gold.on{background:var(--gold);border-color:var(--gold);color:var(--onyx)}
+
+.lanes{display:grid;gap:14px}
+.lane{border:1px solid var(--linen);padding:16px;background:#fbf8f2;border-radius:var(--r);position:relative}
+.lane .tag{position:absolute;top:0;right:0;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;background:var(--onyx);color:var(--ivory)}
+.lane .tag.own{background:var(--moss)}
+.lane .tag.almost{background:var(--gold-dark)}
+.lane .tag.new{background:var(--bordeaux)}
+.lane h4{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:24px;margin:4px 0 2px;line-height:1.05}
+.lane .why{font-size:12.5px;color:var(--ash);line-height:1.5;margin:8px 0 12px}
+.lane ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.lane li{display:flex;justify-content:space-between;gap:10px;font-size:13px;align-items:center}
+.lane li .sw{width:14px;height:14px;border-radius:50%;flex:0 0 auto;margin-right:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.lane li .st{font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--linen);color:var(--ash)}
+.lane li .st.have{border-color:var(--moss);color:var(--moss)}
+.lane li .st.need{border-color:var(--bordeaux);color:var(--bordeaux)}
+.lane .foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:8px;flex-wrap:wrap}
+.stars{display:flex;gap:2px}
+.stars button{font-size:18px;line-height:1;color:var(--linen);transition:.15s}
+.stars button.on{color:var(--gold)}
+.figwrap{display:flex;gap:16px;align-items:flex-end}
+.figwrap svg{width:74px;height:130px;flex:0 0 auto}
+
+.dial{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--onyx);margin-top:8px}
+.dial button{padding:11px 4px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);border-right:1px solid var(--onyx)}
+.dial button:last-child{border-right:0}
+.dial button.on{background:var(--onyx);color:var(--ivory)}
+.range{width:100%;accent-color:var(--onyx);margin:8px 0 0}
+.range-l{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+label.f{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);margin:16px 0 6px}
+.in{width:100%;border:0;border-bottom:1px solid var(--onyx);background:transparent;padding:8px 0;font-size:16px;font-family:"Cormorant Garamond",serif;color:var(--onyx)}
+.in::placeholder{color:var(--mist)}
+textarea.in{font-family:"Jost",sans-serif;font-size:14px;line-height:1.5;resize:vertical;min-height:52px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.garment{aspect-ratio:3/4;position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--linen);background:#fff;cursor:pointer}
+.garment .fill{position:absolute;inset:0}
+.garment .lab{position:absolute;left:0;right:0;bottom:0;padding:8px 8px 7px;font-size:10px;line-height:1.3;background:linear-gradient(0deg,rgba(18,17,16,.75),rgba(18,17,16,0));color:var(--ivory)}
+.garment .lab b{display:block;font-weight:500;letter-spacing:.04em}
+.garment .n{position:absolute;top:6px;right:6px;font-size:9px;letter-spacing:.1em;background:rgba(244,239,230,.9);color:var(--onyx);padding:2px 6px}
+.garment.add{display:grid;place-items:center;border:1px dashed var(--mist);background:transparent;color:var(--ash);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:10px}
+.garment img{width:100%;height:100%;object-fit:cover}
+
+.card{border:1px solid var(--linen);padding:16px;background:#fbf8f2;border-radius:var(--r)}
+.card+.card{margin-top:10px}
+.card h4{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;margin:0 0 4px;line-height:1.05}
+.card .meta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
+.card p{font-size:13px;color:var(--graphite);line-height:1.5;margin:8px 0 0}
+.kv{display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:13px}
+.kv dt{color:var(--ash)}
+.kv dd{margin:0;text-align:right;font-weight:400}
+.score{font-family:"Cormorant Garamond",serif;font-size:30px;line-height:1;color:var(--gold-dark)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.trend{display:grid;grid-template-columns:96px 1fr;gap:14px;border:1px solid var(--linen);background:#fbf8f2;border-radius:var(--r);overflow:hidden}
+.trend+.trend{margin-top:10px}
+.trend .art{min-height:130px;position:relative}
+.trend .art span{position:absolute;left:8px;bottom:6px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);mix-blend-mode:difference}
+.trend .body{padding:12px 12px 12px 0}
+.trend h4{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:20px;margin:0 0 2px;line-height:1.05}
+.trend .src{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark)}
+.trend p{font-size:12px;color:var(--graphite);line-height:1.45;margin:6px 0 8px}
+.bar{height:2px;background:var(--linen);position:relative;margin:6px 0 8px}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--gold)}
+
+.store{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:12px 0;border-bottom:1px solid var(--linen)}
+.store b{font-weight:500;font-size:14px}
+.store small{color:var(--ash);font-size:12px}
+.store .d{font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--gold-dark);text-align:right}
+.store .m{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);text-align:right}
+
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.swatches button{aspect-ratio:1;border-radius:50%;border:2px solid transparent;transition:.15s}
+.swatches button.on{border-color:var(--onyx);transform:scale(1.08)}
+.shape{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.shape button{border:1px solid var(--linen);padding:10px 6px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite)}
+.shape button svg{width:34px;height:52px;fill:none;stroke:var(--onyx);stroke-width:1.2}
+.shape button.on{border-color:var(--onyx);background:#fff}
+.steps{display:flex;gap:4px;margin:8px 0 18px}
+.steps i{flex:1;height:2px;background:var(--linen)}
+.steps i.on{background:var(--gold)}
+.q{display:none}
+.q.on{display:block}
+.mem{display:grid;gap:8px}
+.mem div{display:flex;gap:10px;font-size:13px;padding:10px 0;border-bottom:1px solid var(--linen);align-items:flex-start}
+.mem div::before{content:"";width:5px;height:5px;background:var(--gold);flex:0 0 auto;margin-top:7px}
+.mem small{display:block;color:var(--ash);font-size:11px;margin-top:2px}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linen);font-size:13px;gap:10px}
+.toggle small{display:block;color:var(--ash);font-size:11px;margin-top:2px}
+.sw-t{width:40px;height:22px;border-radius:11px;background:var(--linen);position:relative;flex:0 0 auto;transition:.2s}
+.sw-t::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.sw-t.on{background:var(--onyx)}
+.sw-t.on::after{left:20px}
+.seg{display:flex;border:1px solid var(--linen)}
+.seg button{flex:1;padding:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.seg button.on{background:var(--onyx);color:var(--ivory)}
+
+.scanframe{position:relative;aspect-ratio:3/4.4;border:1px solid var(--linen);background:linear-gradient(180deg,#e9e2d5,#f4efe6);display:grid;place-items:center;overflow:hidden;border-radius:var(--r)}
+.scanframe svg{width:52%;height:auto;stroke:var(--gold-dark);stroke-width:1.2;fill:none;stroke-dasharray:4 5}
+.scanframe .corner{position:absolute;width:26px;height:26px;border:1px solid var(--onyx)}
+.scanframe .c1{top:12px;left:12px;border-right:0;border-bottom:0}
+.scanframe .c2{top:12px;right:12px;border-left:0;border-bottom:0}
+.scanframe .c3{bottom:12px;left:12px;border-right:0;border-top:0}
+.scanframe .c4{bottom:12px;right:12px;border-left:0;border-top:0}
+.scanframe .hint{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+.scanframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scans{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.scans div{aspect-ratio:3/4;background:linear-gradient(180deg,#ddd5c6,#cfc5b4);position:relative;border-radius:var(--r);overflow:hidden}
+.scans div span{position:absolute;left:0;right:0;bottom:0;font-size:8px;letter-spacing:.1em;text-align:center;padding:4px;color:var(--graphite);background:rgba(244,239,230,.85)}
+.scans div svg{width:100%;height:100%}
+.scans img{width:100%;height:100%;object-fit:cover}
+
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--onyx);color:var(--ivory);padding:22px 22px calc(28px + env(safe-area-inset-bottom,0px));z-index:6;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.7,.2,1);border-radius:26px 26px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.3)}
+.sheet.open{transform:none}
+.sheet .handle{width:36px;height:3px;background:var(--graphite);border-radius:2px;margin:0 auto 16px}
+.sheet .mode{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sheet .mode b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px}
+.sheet .mode span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
+.wave{display:flex;gap:3px;align-items:center;height:28px;margin:4px 0 12px}
+.wave i{width:3px;background:var(--gold);border-radius:2px;height:6px;animation:wv 1s infinite ease-in-out}
+.wave i:nth-child(2n){animation-delay:.15s}.wave i:nth-child(3n){animation-delay:.3s}.wave i:nth-child(5n){animation-delay:.45s}
+.wave.idle i{animation:none;height:4px;background:var(--graphite)}
+@keyframes wv{0%,100%{height:5px}50%{height:24px}}
+.transcript{font-family:"Cormorant Garamond",serif;font-size:21px;line-height:1.3;min-height:78px;color:var(--ivory)}
+.transcript .cur{border-right:1px solid var(--gold);animation:blink 1s infinite}
+.transcript mark{background:rgba(184,149,90,.35);color:var(--ivory)}
+@keyframes blink{50%{border-color:transparent}}
+.sheet .tip{font-size:11px;color:var(--mist);margin:12px 0 0;line-height:1.5}
+.sheet .route{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.sheet .route .btn{border-color:var(--graphite);color:var(--ivory)}
+.sheet .route .btn.gold{border-color:var(--gold);background:var(--gold);color:var(--onyx)}
+
+.overlay{position:absolute;inset:0;background:rgba(18,17,16,.97);backdrop-filter:blur(8px);color:var(--ivory);z-index:8;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:30px}
+.overlay.on{display:flex}
+.overlay h3{font-size:30px}
+.overlay .prog{width:180px;height:1px;background:var(--graphite);position:relative;overflow:hidden}
+.overlay .prog i{position:absolute;left:0;top:0;bottom:0;width:40%;background:var(--gold);animation:slide 1.2s infinite}
+@keyframes slide{from{left:-40%}to{left:100%}}
+.overlay .render{width:150px;height:260px;display:grid;place-items:center}
+.overlay .render svg{width:100%;height:100%}
+.overlay .btn{border-color:var(--ivory);color:var(--ivory)}
+.overlay .btn.gold{border-color:var(--gold);color:var(--onyx)}
+.overlay p{font-size:12px;color:var(--mist);max-width:30ch;margin:0;line-height:1.5}
+.toast{position:absolute;left:50%;transform:translateX(-50%) translateY(20px);bottom:170px;background:var(--onyx);color:var(--ivory);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;opacity:0;transition:.25s;pointer-events:none;z-index:9;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.shimmer{background:linear-gradient(90deg,var(--ivory-2) 25%,#f7f3ec 50%,var(--ivory-2) 75%);background-size:200% 100%;animation:sh 1.4s infinite}
+@keyframes sh{from{background-position:200% 0}to{background-position:-200% 0}}
+.welcome{position:absolute;inset:0;background:var(--onyx);color:var(--ivory);z-index:9;display:flex;flex-direction:column;justify-content:flex-end;padding:40px 28px 60px;background-image:radial-gradient(90% 60% at 80% 10%,#2b2622 0%,var(--onyx) 65%)}
+.welcome.off{display:none}
+.welcome .big{font-family:"Cormorant Garamond",serif;font-size:46px;line-height:.98;letter-spacing:.02em;margin:0 0 10px}
+.welcome .big em{font-style:italic;color:var(--gold-2)}
+.welcome .line{width:38px;height:1px;background:var(--gold);margin:18px 0}
+.welcome p{color:var(--mist);font-size:14px;line-height:1.55;margin:0 0 24px;max-width:30ch}
+.welcome .btn{border-color:var(--gold);color:var(--ivory)}
+.welcome .skip{margin-top:14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);align-self:flex-start}
+.wm-top{position:absolute;top:70px;left:28px;font-family:"Cormorant Garamond",serif;letter-spacing:.3em;font-size:12px;text-transform:uppercase;color:var(--gold)}
+.plan{display:grid;gap:10px}
+.night{border-left:1px solid var(--gold);padding:2px 0 2px 14px}
+.night .eyebrow{color:var(--gold-dark)}
+.night h4{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:20px;margin:2px 0 3px}
+.night p{font-size:12.5px;color:var(--graphite);margin:0;line-height:1.45}
+.pack{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pack .card h4{font-size:18px}
+.pack ul{list-style:none;padding:0;margin:8px 0 0;font-size:12.5px;display:grid;gap:5px}
+.pack li::before{content:"";display:inline-block;width:4px;height:4px;background:var(--gold);margin-right:8px;vertical-align:middle}
+.lib{display:grid;gap:8px}
+.lib div{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--linen);font-size:13px}
+.lib .ic{width:34px;height:44px;border:1px solid var(--linen);background:#fff;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:16px;color:var(--gold-dark)}
+.lib small{display:block;color:var(--ash);font-size:11px}
+.lib .st{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--moss)}
+.rating-row{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--linen)}
+.rating-row svg{width:44px;height:70px}
+.rating-row b{font-weight:500;font-size:14px;display:block}
+.rating-row small{color:var(--ash);font-size:11px}
+.insight{background:var(--onyx);color:var(--ivory);padding:16px;border-radius:var(--r);margin-top:12px}
+.insight .eyebrow{color:var(--gold-2)}
+.insight p{margin:6px 0 0;font-family:"Cormorant Garamond",serif;font-size:19px;line-height:1.3}
+</style>
+</head>
+<body>
+<div class="stage">
+  <aside class="brief">
+    <div class="wordmark">Tiffany and Co.<small>Prototype v0.1 · September 16th, 2026</small></div>
+    <p>A lifestyle app about your look. It learns your body, your coloring, your closet and your comfort zone, then dresses you for the room you are walking into.</p>
+    <div class="index" id="index"></div>
+    <div class="note">Every AI response in this prototype is simulated so the screens can be judged. The spec names the live services behind each one.</div>
+  </aside>
+
+  <div class="phone"><div class="app" id="app">
+
+    <div class="welcome" id="welcome">
+      <div class="wm-top">Tiffany and Co.</div>
+      <h1 class="big">Look good.<br><em>Feel good.</em></h1>
+      <div class="line"></div>
+      <p>Your stylist, your closet and your travel wardrobe in one place. Built for every body, every shade, every expression.</p>
+      <button class="btn" onclick="go('quiz');closeWelcome()">Build my profile</button>
+      <button class="skip" onclick="closeWelcome()">Continue with the sample profile</button>
+    </div>
+
+    <header class="topbar">
+      <div class="wm">Tiffany <em>and</em> Co.</div>
+      <div class="chip"><i></i><span id="loc">Oakland · 64°</span></div>
+    </header>
+
+    <div class="screens" id="screens">
+
+      <!-- TODAY -->
+      <section class="screen on" data-screen="today">
+        <div class="eyebrow" id="greet-eyebrow">Wednesday evening</div>
+        <h2 class="h-page">Good evening, <i id="greet-name">Ellington</i>.</h2>
+        <p class="sub">Dinner with colleagues at 7. Clear, cooling to 58° by 9.</p>
+
+        <div class="hero dark">
+          <div class="bg"></div>
+          <div class="eyebrow">Tonight's look · at the edge of your zone</div>
+          <h2>Ink on ink, one warm note.</h2>
+          <div class="pieces" id="today-pieces"></div>
+          <div class="btnrow"><button class="btn gold sm" onclick="seeOnMe('today')">See it on me</button><button class="btn sm" onclick="go('studio')">Change the room</button></div>
+          <div class="fig" id="today-fig"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-h"><h3>Three ways in</h3><button onclick="go('studio')">Open studio</button></div>
+          <div class="chips">
+            <button class="chip-b on" onclick="go('studio');setLaneFocus('own')">From my closet</button>
+            <button class="chip-b" onclick="go('studio');setLaneFocus('almost')">One piece away</button>
+            <button class="chip-b" onclick="go('studio');setLaneFocus('new')">Something new</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-h"><h3>On the horizon</h3><button onclick="go('travel')">All trips</button></div>
+          <div class="card">
+            <div class="row"><h4>Las Vegas</h4><span class="score">3</span></div>
+            <div class="meta">September 25th to 28th · 3 nights · 4 looks planned</div>
+            <p>Night 1 is a rooftop dinner. Your camel coat is packed, the rest is on the list.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-h"><h3>Trending for you</h3><button onclick="go('trends')">See all</button></div>
+          <div class="chips scroll" id="today-trends"></div>
+        </div>
+      </section>
+
+      <!-- SCAN -->
+      <section class="screen" data-screen="scan">
+        <div class="eyebrow">Full body scan</div>
+        <h2 class="h-page">Stand tall. <i>We do the rest.</i></h2>
+        <p class="sub">One photo, front on, in fitted clothes and good light. The app reads proportion, shoulder line, waist placement and leg length. Nothing leaves your device until you say so.</p>
+        <div class="scanframe" id="scanframe">
+          <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+          <svg viewBox="0 0 100 220"><circle cx="50" cy="24" r="16"/><path d="M34 46 C18 52 14 70 14 96 L22 96 L26 150 L28 214 L42 214 L46 150 L50 130 L54 150 L58 214 L72 214 L74 150 L78 96 L86 96 C86 70 82 52 66 46 Z"/></svg>
+          <div class="hint">Align to the guide</div>
+        </div>
+        <div class="btnrow">
+          <label class="btn solid" style="display:inline-block">Capture<input type="file" accept="image/*" capture="environment" id="scan-file" style="display:none"></label>
+          <button class="btn" onclick="sampleScan()">Use sample</button>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>Your scans</h3><span class="meta" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)">Kept on device</span></div>
+          <div class="scans" id="scans"></div>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>What we read</h3></div>
+          <dl class="kv" id="scan-read"></dl>
+        </div>
+      </section>
+
+      <!-- CLOSET -->
+      <section class="screen" data-screen="closet">
+        <div class="eyebrow">Your closet</div>
+        <h2 class="h-page"><span id="closet-count">12</span> pieces, <i>remembered.</i></h2>
+        <p class="sub">Photograph anything you own. The app tags it, tracks how often you wear it and pulls from it first.</p>
+        <div class="chips scroll" id="closet-filters"></div>
+        <div class="grid" id="closet-grid" style="margin-top:14px"></div>
+        <div class="btnrow"><button class="btn solid wide" onclick="go('studio');setLaneFocus('own')">Dress me from this closet</button></div>
+      </section>
+
+      <!-- STUDIO -->
+      <section class="screen" data-screen="studio">
+        <div class="eyebrow">Studio</div>
+        <h2 class="h-page">Set the room. <i>We set the look.</i></h2>
+        <p class="sub">Tell the studio where you are going and who is there. Then choose how far from your comfort zone you want to travel.</p>
+
+        <label class="f">The occasion</label>
+        <div class="chips" id="occasions"></div>
+        <label class="f">Who is in the room</label>
+        <div class="chips" id="audience"></div>
+        <label class="f">Comfort zone</label>
+        <div class="dial" id="dial">
+          <button data-z="inside">Inside</button><button data-z="edge" class="on">At the edge</button><button data-z="outside">Outside</button>
+        </div>
+        <label class="f">How daring</label>
+        <input type="range" class="range" min="1" max="5" value="3" id="daring" aria-label="How daring">
+        <div class="range-l"><span>Quiet</span><span id="daring-l">Considered</span><span>Fearless</span></div>
+
+        <hr class="hr">
+        <div class="section-h"><h3 id="studio-h">Three looks for dinner</h3><button onclick="regen()">Refresh</button></div>
+        <div class="lanes" id="lanes"></div>
+      </section>
+
+      <!-- TRAVEL -->
+      <section class="screen" data-screen="travel">
+        <div class="eyebrow">Travel</div>
+        <h2 class="h-page">Pack for the <i>plan,</i> not the suitcase.</h2>
+        <p class="sub">Say where you are going and what each night holds. The app builds a look per night from your closet, then lists the few pieces worth buying.</p>
+
+        <div class="card dark" style="background:var(--onyx);border-color:var(--onyx)">
+          <div class="row"><h4 style="color:var(--ivory)">Las Vegas</h4><span class="eyebrow">Sept 25th to 28th</span></div>
+          <div class="meta" style="color:var(--mist)">3 nights · 4 looks · 2 pieces to buy</div>
+          <div class="plan" style="margin-top:14px" id="vegas-plan"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-h"><h3>Packing list</h3><button onclick="toast('Sent to Notes')">Export</button></div>
+          <div class="pack">
+            <div class="card"><h4>From your closet</h4><ul id="pack-have"></ul></div>
+            <div class="card"><h4>Worth buying</h4><ul id="pack-need"></ul></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-h"><h3>New trip</h3></div>
+          <label class="f">Where</label><input class="in" id="trip-where" placeholder="Miami">
+          <label class="f">When and how long</label><input class="in" id="trip-when" placeholder="October 10th · 2 nights">
+          <label class="f">What each day holds</label><textarea class="in" id="trip-plan" placeholder="Night 1 dinner on the water, day 2 pool then a club"></textarea>
+          <div class="btnrow"><button class="btn solid" onclick="planTrip()">Plan my looks</button><button class="btn" onclick="dictateInto('trip-plan')">Dictate the plan</button></div>
+        </div>
+      </section>
+
+      <!-- TRENDS -->
+      <section class="screen" data-screen="trends">
+        <div class="eyebrow">Trends · scanned this morning</div>
+        <h2 class="h-page">What the world is <i>wearing.</i></h2>
+        <p class="sub">Pulled from social, street and runway, then scored against your profile. A high match means it flatters you, not that everyone is wearing it.</p>
+        <div class="chips scroll" id="trend-src"></div>
+        <div id="trend-list" style="margin-top:14px"></div>
+      </section>
+
+      <!-- NEARBY -->
+      <section class="screen" data-screen="nearby">
+        <div class="eyebrow">Nearby</div>
+        <h2 class="h-page">Find it <i>within reach.</i></h2>
+        <p class="sub" id="nearby-sub">Stores near you that carry the silhouette we suggested. We list what is close and what fits. No brand pays to be here.</p>
+        <div class="card">
+          <div class="meta">Looking for</div>
+          <h4 id="nearby-piece">Cream wide leg trouser, high rise</h4>
+          <p>Matched on cut, rise and tone. Price band set to your preference.</p>
+        </div>
+        <div class="btnrow"><button class="btn solid sm" onclick="locate()">Use my location</button><button class="btn sm" onclick="toast('Price band updated')">Price band</button></div>
+        <div id="stores" style="margin-top:8px"></div>
+      </section>
+
+      <!-- RATE -->
+      <section class="screen" data-screen="rate">
+        <div class="eyebrow">Ratings</div>
+        <h2 class="h-page">What you <i>loved.</i></h2>
+        <p class="sub">Rate every look you wear. The app learns from the pattern, not the single score.</p>
+        <div id="ratings"></div>
+        <div class="insight"><div class="eyebrow">Pattern</div><p>Your five star looks share one thing: a single strong shoulder and a quiet lower half. Monochrome rates a full star higher than color blocking.</p></div>
+      </section>
+
+      <!-- ME -->
+      <section class="screen" data-screen="me">
+        <div class="eyebrow">Profile</div>
+        <h2 class="h-page">Your memory <i>profile.</i></h2>
+        <p class="sub">Everything the app knows about you, in one place. Edit any of it. Delete all of it in one tap.</p>
+        <div class="card">
+          <div class="row"><h4 id="me-name">Ellington</h4><button class="btn sm" onclick="go('quiz')">Edit</button></div>
+          <dl class="kv" id="me-kv" style="margin-top:10px"></dl>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>What we have learned</h3><button onclick="toast('Memory cleared for this session');state.memory=[];renderMe()">Clear</button></div>
+          <div class="mem" id="memory"></div>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>Fashion library</h3><label style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);border-bottom:1px solid var(--gold-2);cursor:pointer">Add<input type="file" id="lib-file" accept=".pdf,.epub,.txt,.md" style="display:none"></label></div>
+          <p class="sub" style="margin-bottom:8px">Books, articles and guides you upload. The stylist reads these first and cites them when it explains a choice.</p>
+          <div class="lib" id="lib"></div>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>Engine</h3></div>
+          <div class="toggle"><div>Styling and memory<small>Claude</small></div><span class="eyebrow">Live</span></div>
+          <div class="toggle"><div>Image rendering<small id="img-engine">Gemini image model</small></div><div class="seg" style="width:150px"><button class="on" onclick="setImg(this,'Gemini image model')">Gemini</button><button onclick="setImg(this,'OpenAI image model')">OpenAI</button></div></div>
+          <div class="toggle"><div>Dictation<small>Wispr Flow keyboard, in app voice for conversation</small></div><span class="eyebrow">Live</span></div>
+          <div class="toggle"><div>Voice replies<small>Deferred. Adds cost per reply.</small></div><button class="sw-t" onclick="this.classList.toggle('on');toast(this.classList.contains('on')?'Voice replies on':'Voice replies off')" aria-label="Voice replies"></button></div>
+          <div class="toggle"><div>Photos stay on device<small>Only the render request leaves, encrypted</small></div><button class="sw-t on" aria-label="Photos stay on device"></button></div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="screen" data-screen="quiz">
+        <div class="eyebrow">Profile · <span id="q-step">1</span> of 6</div>
+        <div class="steps" id="q-steps"></div>
+
+        <div class="q on" data-q="1">
+          <h2 class="h-page">Your <i>frame.</i></h2>
+          <p class="sub">Pick the shape closest to yours. There is no better or worse here, only what to balance and what to show.</p>
+          <div class="shape" id="shapes"></div>
+          <label class="f">Height</label>
+          <div class="seg" id="height"><button>Petite</button><button class="on">Average</button><button>Tall</button></div>
+        </div>
+
+        <div class="q" data-q="2">
+          <h2 class="h-page">Your <i>coloring.</i></h2>
+          <p class="sub">Tap the tone closest to your skin. Then the undertone, which decides whether gold or silver, warm or cool, lights you up.</p>
+          <div class="swatches" id="skins"></div>
+          <label class="f">Undertone</label>
+          <div class="seg" id="undertone"><button>Cool</button><button class="on">Neutral</button><button>Warm</button><button>Olive</button></div>
+        </div>
+
+        <div class="q" data-q="3">
+          <h2 class="h-page">Your <i>hair.</i></h2>
+          <p class="sub">Texture and length change what a neckline and a collar do for you.</p>
+          <label class="f">Texture</label>
+          <div class="seg" id="hair-t"><button>Straight</button><button>Wavy</button><button>Curly</button><button class="on">Coily</button><button>None</button></div>
+          <label class="f">Length</label>
+          <div class="seg" id="hair-l"><button class="on">Close</button><button>Short</button><button>Medium</button><button>Long</button></div>
+          <label class="f">Color</label>
+          <div class="seg" id="hair-c"><button class="on">Dark</button><button>Brown</button><button>Light</button><button>Grey</button><button>Dyed</button></div>
+        </div>
+
+        <div class="q" data-q="4">
+          <h2 class="h-page">Your <i>expression.</i></h2>
+          <p class="sub">Dress the way you want to be read. Choose any, or write your own.</p>
+          <div class="chips" id="express"></div>
+          <label class="f">In your words</label>
+          <input class="in" id="express-own" placeholder="Clean, sharp, a little dangerous">
+          <label class="f">Three words you want people to say</label>
+          <div class="chips" id="words"></div>
+        </div>
+
+        <div class="q" data-q="5">
+          <h2 class="h-page">Your <i>comfort zone.</i></h2>
+          <p class="sub">Where you live most days. You can step out of it any time in the studio.</p>
+          <div class="dial" id="q-dial"><button data-z="inside" class="on">Inside</button><button data-z="edge">At the edge</button><button data-z="outside">Outside</button></div>
+          <label class="f">Never, ever</label>
+          <div class="chips" id="nevers"></div>
+        </div>
+
+        <div class="q" data-q="6">
+          <h2 class="h-page">Now we <i>push.</i></h2>
+          <p class="sub">Honest answers here let the studio take you somewhere new without missing.</p>
+          <div id="push"></div>
+        </div>
+
+        <div class="btnrow" style="margin-top:24px"><button class="btn" id="q-back" onclick="qStep(-1)">Back</button><button class="btn solid" id="q-next" onclick="qStep(1)">Next</button></div>
+      </section>
+
+    </div>
+
+    <button class="mic" id="mic" aria-label="Dictate. Double tap to edit."><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></button>
+
+    <nav class="tabs" id="tabs"></nav>
+
+    <div class="sheet" id="sheet">
+      <div class="handle"></div>
+      <div class="mode"><b id="sheet-title">Listening</b><span id="sheet-mode">Tap to stop · double tap the mic to edit</span></div>
+      <div class="wave" id="wave"></div>
+      <div class="transcript" id="transcript"><span class="cur"></span></div>
+      <p class="tip" id="sheet-tip">Speak naturally. Names, brands and places are kept as you said them. Double tap the mic, then say the change you want, like "make that four nights".</p>
+      <div class="route"><button class="btn gold sm" onclick="sendTranscript()">Send to stylist</button><button class="btn sm" onclick="closeSheet()">Discard</button></div>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div class="eyebrow" id="ov-eyebrow">Rendering with Gemini · 3 reference photos</div>
+      <h3 id="ov-h">Fitting the look to you</h3>
+      <div class="prog"><i></i></div>
+      <div class="render" id="ov-render"></div>
+      <p id="ov-p">Your scan, your skin tone and your hair are sent as references so the render is you, not a model.</p>
+      <div class="btnrow"><button class="btn" onclick="closeOverlay()">Close</button><button class="btn gold" onclick="closeOverlay();toast('Saved to your looks')">Save look</button></div>
+    </div>
+
+    <div class="toast" id="toast">Saved</div>
+  </div></div>
+
+  <aside class="notes">
+    <h3>How to read this prototype</h3>
+    <dl>
+      <dt>Studio</dt><dd>Every look is built in three lanes. From your closet. One piece away. Entirely new.</dd>
+      <dt>Dial</dt><dd>Comfort zone and daring change the looks in real time. Try Outside at 5.</dd>
+      <dt>Mic</dt><dd>Tap to dictate. Double tap to edit what you just said by voice.</dd>
+      <dt>Render</dt><dd>See it on me shows the handoff to the image engine. Swap engines under Profile.</dd>
+      <dt>Nearby</dt><dd>Stores are matched on silhouette, never on brand deals.</dd>
+    </dl>
+  </aside>
+</div>
+<script>
+/* ---------- state ---------- */
+const state={
+  name:'Ellington',
+  profile:{shape:'Inverted triangle',height:'Average',skin:'#6B4423',undertone:'Neutral',hairT:'Coily',hairL:'Close',hairC:'Dark',express:['Masculine','Sharp'],words:['Composed','Expensive','Warm'],zone:'edge',nevers:['Loud logos','Skinny jeans']},
+  occasion:'Dinner',audience:'Colleagues',zone:'edge',daring:3,laneFocus:null,imgEngine:'Gemini image model',
+  closet:[
+    {id:1,n:'Ink wool blazer',c:'Outerwear',col:'#1B1F2A',w:14},
+    {id:2,n:'Camel overcoat',c:'Outerwear',col:'#B58A5A',w:6},
+    {id:3,n:'Black silk shirt',c:'Tops',col:'#141414',w:11},
+    {id:4,n:'Ivory knit polo',c:'Tops',col:'#EDE6D8',w:9},
+    {id:5,n:'Bordeaux cashmere crew',c:'Tops',col:'#5B1F2B',w:4},
+    {id:6,n:'Charcoal pleated trouser',c:'Bottoms',col:'#3A3A3D',w:12},
+    {id:7,n:'Cream wide leg trouser',c:'Bottoms',col:'#E6DDCB',w:3},
+    {id:8,n:'Black straight denim',c:'Bottoms',col:'#1E1E22',w:16},
+    {id:9,n:'Chelsea boot, black',c:'Shoes',col:'#111',w:20},
+    {id:10,n:'White leather sneaker',c:'Shoes',col:'#F2F0EA',w:18},
+    {id:11,n:'Gold chain, fine',c:'Accessories',col:'#C9A75B',w:22},
+    {id:12,n:'Tortoise frames',c:'Accessories',col:'#6B4A2B',w:30}
+  ],
+  filter:'All',
+  memory:[
+    {t:'Never wears yellow. Said so twice.',d:'Learned August 30th'},
+    {t:'Rates a strong shoulder line high, every time.',d:'From 9 ratings'},
+    {t:'Prefers a Chelsea boot to a loafer for dinner.',d:'Worn 20 times'},
+    {t:'Bought the camel overcoat after the app suggested it.',d:'September 2nd'}
+  ],
+  ratings:[
+    {n:'Ink on ink, one warm note',d:'September 12th · Dinner',r:5,top:'#141414',bot:'#3A3A3D',shoe:'#111'},
+    {n:'Camel over cream',d:'September 6th · Brunch',r:4,top:'#EDE6D8',bot:'#E6DDCB',shoe:'#F2F0EA',coat:'#B58A5A'},
+    {n:'Bordeaux and charcoal',d:'August 29th · Work',r:3,top:'#5B1F2B',bot:'#3A3A3D',shoe:'#111'},
+    {n:'Full black, gold chain',d:'August 22nd · Date',r:5,top:'#141414',bot:'#1E1E22',shoe:'#111'}
+  ],
+  lib:[
+    {n:'The Curated Closet',s:'Read · 212 pages'},
+    {n:'Dress Code, Véronique Hyland',s:'Read · 288 pages'},
+    {n:'Color Me Beautiful, undertone chapters',s:'Read · 4 chapters'}
+  ],
+  scans:[{d:'Sept 14th'},{d:'Aug 30th'},{d:'Aug 2nd'}]
+};
+
+const SHAPES=[['Straight','M12 4 H22 L24 50 H10 Z'],['Pear','M13 4 H21 L23 24 L28 50 H6 L11 24 Z'],['Inverted triangle','M6 4 H28 L23 26 L22 50 H12 L11 26 Z'],['Hourglass','M7 4 H27 L20 26 L27 50 H7 L14 26 Z'],['Round','M12 4 H22 C30 18 30 36 22 50 H12 C4 36 4 18 12 4 Z'],['Athletic','M8 4 H26 L24 22 L24 50 H10 L10 22 Z']];
+const SKINS=['#FBE8D8','#F3D7BE','#E8C39E','#D9A97C','#C98F5E','#B27A4C','#9A6238','#864F2E','#6B4423','#54331B','#3E2414','#2A170D'];
+const OCC=['Dinner','Work','Brunch','Date','Gala','Travel day','Club','Wedding guest'];
+const AUD=['Friends','Colleagues','Strangers','Someone to impress','Family','Clients'];
+const EXPRESS=['Feminine','Masculine','Fluid','Androgynous','Classic','Street','Minimal','Maximal'];
+const WORDS=['Composed','Expensive','Warm','Sharp','Effortless','Bold','Soft','Dangerous','Playful','Powerful'];
+const NEVERS=['Loud logos','Skinny jeans','Crop tops','Sheer','Neon','Heels','Shorts at dinner','Prints'];
+const TRENDS=[
+  {n:'The relaxed suit',src:'Runway',why:'Soft shoulder, wide leg, worn with a knit not a shirt. Your frame carries the shoulder without padding.',m:92,cols:['#3A3A3D','#1B1F2A']},
+  {n:'Cream on cream',src:'Street',why:'Tonal ivory head to toe. Your skin depth makes ivory glow instead of washing out.',m:88,cols:['#EDE6D8','#E6DDCB']},
+  {n:'Bordeaux as a neutral',src:'Instagram',why:'Deep wine replacing black for evening. Warm on your undertone, and you own the crew.',m:85,cols:['#5B1F2B','#141414']},
+  {n:'One gold piece',src:'TikTok',why:'A single fine chain or cuff, nothing else. Already your habit. Keep it.',m:81,cols:['#C9A75B','#141414']},
+  {n:'The long coat, open',src:'Pinterest',why:'Ankle length, unbuttoned, over something narrow. Adds line to an average height.',m:77,cols:['#B58A5A','#EDE6D8']},
+  {n:'Sheer layering',src:'Runway',why:'On your never list. Shown so you can see it, not so we push it.',m:31,cols:['#A39D94','#141414']}
+];
+const STORES=[
+  {n:'Independent tailoring boutique',s:'Wide leg trousers, natural fabrics, in stock in your size',d:'0.4 mi',m:96},
+  {n:'Department store, designer floor',s:'Two cream trousers in the cut we suggested',d:'1.1 mi',m:91},
+  {n:'Vintage and consignment',s:'One pleated ivory pair, 32 waist',d:'1.6 mi',m:84},
+  {n:'Menswear shop, Rockridge',s:'Similar rise, linen blend, lighter tone',d:'2.3 mi',m:72}
+];
+const VEGAS=[
+  {e:'Night 1 · Rooftop dinner, 8pm',l:'Camel overcoat over black silk, charcoal trouser, Chelsea boot',p:'Wind on the roof. The coat does the talking. One gold chain.'},
+  {e:'Day 2 · Pool, then a show',l:'Ivory knit polo, cream wide leg trouser, white sneaker',p:'Cream on cream in the sun, then the same look reads dressed at the show.'},
+  {e:'Night 2 · Cirque, then a lounge',l:'Ink blazer, bordeaux crew, black denim, Chelsea boot',p:'Bordeaux is your warm note for the night. Keep the rest quiet.'},
+  {e:'Night 3 · Club',l:'NEW: black satin shirt, open two buttons. Black denim, Chelsea boot',p:'One piece away. The satin shirt is the buy. Everything else you own.'}
+];
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function figure(top,bot,shoe,skin,hair,coat){
+  skin=skin||state.profile.skin;hair=hair||'#1a1410';
+  const hairShape=state.profile.hairT==='None'?'':`<path d="M34 22 C34 8 66 8 66 22 L66 26 C60 20 40 20 34 26 Z" fill="${hair}"/>`;
+  const coatShape=coat?`<path d="M30 60 L20 64 L14 130 L26 132 L30 100 L30 150 L70 150 L70 100 L74 132 L86 130 L80 64 L70 60 Z" fill="${coat}" opacity=".95"/>`:'';
+  return `<svg viewBox="0 0 100 230" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="26" r="15" fill="${skin}"/>${hairShape}<rect x="45" y="40" width="10" height="10" fill="${skin}"/><path d="M30 60 L20 64 L14 122 L26 124 L30 96 L30 132 L70 132 L70 96 L74 124 L86 122 L80 64 L70 60 Z" fill="${top}"/>${coatShape}<path d="M31 132 L28 212 L44 212 L50 150 L56 212 L72 212 L69 132 Z" fill="${bot}"/><path d="M27 212 L27 224 L46 224 L46 212 Z" fill="${shoe}"/><path d="M54 212 L54 224 L73 224 L73 212 Z" fill="${shoe}"/></svg>`;
+}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+function chips(el,items,cur,onpick,gold){el.innerHTML='';items.forEach(i=>{const b=document.createElement('button');b.className='chip-b'+(gold?' gold':'')+((Array.isArray(cur)?cur.includes(i):cur===i)?' on':'');b.textContent=i;b.onclick=()=>onpick(i,b);el.appendChild(b)})}
+function segInit(id,onpick){$$('#'+id+' button').forEach(b=>b.onclick=()=>{$$('#'+id+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');onpick&&onpick(b.textContent)})}
+
+/* ---------- navigation ---------- */
+const SCREENS=[['today','Today'],['scan','Scan'],['closet','Closet'],['studio','Studio'],['travel','Travel'],['trends','Trends'],['nearby','Nearby'],['rate','Ratings'],['me','Profile'],['quiz','Questionnaire']];
+const TABS=[['today','Today','<path d="M4 11 L12 4 L20 11 V20 H4 Z"/>'],['closet','Closet','<path d="M12 4 v3 M4 17 L12 7 L20 17 Z M4 20 H20"/>'],['studio','Studio','<circle cx="12" cy="12" r="8"/><path d="M12 6 v6 l4 2"/>'],['travel','Travel','<path d="M3 12 L21 4 L15 21 L12 13 Z"/>'],['me','Me','<circle cx="12" cy="8" r="4"/><path d="M4 21 c0 -5 4 -8 8 -8 s8 3 8 8"/>']];
+function go(name){
+  $$('.screen').forEach(s=>s.classList.toggle('on',s.dataset.screen===name));
+  $$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.s===name));
+  $$('#index button').forEach(b=>b.classList.toggle('on',b.dataset.s===name));
+  $('#screens').scrollTop=0;
+  if(name==='studio')renderLanes();
+  if(name==='me')renderMe();
+}
+function closeWelcome(){$('#welcome').classList.add('off')}
+function setLaneFocus(l){state.laneFocus=l;renderLanes()}
+
+/* ---------- today ---------- */
+function renderToday(){
+  $('#today-pieces').innerHTML=['Black silk shirt','Charcoal pleated trouser','Chelsea boot','One fine gold chain'].map(p=>`<span>${p}</span>`).join('');
+  $('#today-fig').innerHTML=figure('#141414','#3A3A3D','#111');
+  const el=$('#today-trends');el.innerHTML=TRENDS.slice(0,4).map(t=>`<button class="chip-b" onclick="go('trends')">${t.n} · ${t.m}%</button>`).join('');
+  $('#greet-name').textContent=state.name;$('#me-name').textContent=state.name;
+}
+
+/* ---------- scan ---------- */
+function renderScans(){
+  $('#scans').innerHTML=state.scans.map(s=>`<div>${s.img?`<img src="${s.img}" alt="Scan">`:figure('#9a9187','#7d756b','#3a3733')}<span>${s.d}</span></div>`).join('');
+  $('#scan-read').innerHTML=[['Frame','Inverted triangle, shoulders lead'],['Waist','Sits high. Trousers can rise'],['Leg line','Long. Wide legs work'],['Neck','Medium. Open collar over crew'],['Coloring','Deep, neutral undertone']].map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+}
+function sampleScan(){state.scans.unshift({d:'Today'});renderScans();toast('Scan read in 4 seconds')}
+$('#scan-file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.scans.unshift({d:'Today',img:r.result});renderScans();$('#scanframe').insertAdjacentHTML('beforeend',`<img src="${r.result}" alt="Your scan">`);toast('Kept on device. Read in 4 seconds')};r.readAsDataURL(f)});
+
+/* ---------- closet ---------- */
+function renderCloset(){
+  chips($('#closet-filters'),['All','Tops','Bottoms','Outerwear','Shoes','Accessories'],state.filter,(i)=>{state.filter=i;renderCloset()});
+  const items=state.closet.filter(g=>state.filter==='All'||g.c===state.filter);
+  $('#closet-count').textContent=state.closet.length;
+  $('#closet-grid').innerHTML=items.map(g=>`<div class="garment" onclick="toast('${g.n} · worn ${g.w} times')">${g.img?`<img src="${g.img}" alt="${g.n}">`:`<div class="fill" style="background:linear-gradient(160deg,${g.col} 0%,${shade(g.col)} 100%)"></div>`}<span class="n">${g.w}×</span><div class="lab"><b>${g.n}</b>${g.c}</div></div>`).join('')+`<label class="garment add">Add a piece<input type="file" accept="image/*" id="closet-file" style="display:none"></label>`;
+  $('#closet-file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.closet.push({id:Date.now(),n:'New piece',c:'Tops',col:'#888',w:0,img:r.result});renderCloset();toast('Tagged and remembered')};r.readAsDataURL(f)});
+}
+function shade(h){const n=parseInt(h.slice(1),16);const r=Math.max(0,(n>>16)-28),g=Math.max(0,((n>>8)&255)-28),b=Math.max(0,(n&255)-28);return '#'+((r<<16)|(g<<8)|b).toString(16).padStart(6,'0')}
+
+/* ---------- studio ---------- */
+const DARING=['Quiet','Calm','Considered','Bold','Fearless'];
+function looksFor(){
+  const z=state.zone,d=state.daring,o=state.occasion,a=state.audience,p=state.profile;
+  const tone=p.undertone==='Warm'||p.undertone==='Olive'?'gold and camel':p.undertone==='Cool'?'silver and charcoal':'both gold and charcoal';
+  const own={t:'own',tag:'From your closet',title:{inside:'Ink on ink, one warm note',edge:'Cream over black',outside:'Bordeaux head to toe'}[z],
+    why:{inside:`Everything here you have worn and rated four stars or more. The ${p.shape.toLowerCase()} frame wants a quiet lower half, so the trouser stays dark.`,
+         edge:`Same closet, new pairing. The ivory polo against black is a contrast your skin depth carries well, and ${a.toLowerCase()} will notice without knowing why.`,
+         outside:`You own the crew and the boot. The wide leg turns the crew into a look. Your undertone reads warm enough for ${tone}.`}[z],
+    pieces:{inside:[[3,'have'],[6,'have'],[9,'have'],[11,'have']],edge:[[4,'have'],[8,'have'],[9,'have'],[12,'have']],outside:[[5,'have'],[7,'have'],[9,'have'],[11,'have']]}[z]};
+  const almost={t:'almost',tag:'One piece away',title:{inside:'The relaxed suit',edge:'Camel and cream',outside:'Satin under wool'}[z],
+    why:{inside:`Your ink blazer with a new matching trouser becomes a suit. One purchase, ten looks.`,
+         edge:`The camel overcoat over cream wide leg trouser. Add a cream knit and you have tonal dressing from the runway feed.`,
+         outside:`A black satin shirt under the ink blazer. Open two buttons, gold chain. For ${o.toLowerCase()} with ${a.toLowerCase()}, this is the one that gets remembered.`}[z],
+    pieces:{inside:[[1,'have'],['Ink wool trouser, matching','need'],[3,'have'],[9,'have']],edge:[[2,'have'],[7,'have'],['Cream cashmere knit','need'],[10,'have']],outside:[[1,'have'],['Black satin shirt','need'],[8,'have'],[9,'have']]}[z]};
+  const nw={t:'new',tag:'Entirely new',title:{inside:'Charcoal, softened',edge:'Moss and ivory',outside:'Ivory suit, black boot'}[z],
+    why:{inside:`Nothing you own, everything you would wear. A charcoal knit polo and pleated trouser in a lighter grey. Zero risk, new energy.`,
+         edge:`Moss green is the color your undertone has been waiting for. Paired with ivory it flatters deep skin like nothing in your closet does yet.`,
+         outside:`Daring at ${d}. An ivory suit with the shoulder cut clean. Loud without a logo. Your never list is honored: no prints, no sheer.`}[z],
+    pieces:{inside:[['Charcoal knit polo','need'],['Light grey pleated trouser','need'],[9,'have']],edge:[['Moss wool overshirt','need'],['Ivory tee, heavy','need'],[7,'have'],[10,'have']],outside:[['Ivory double breasted jacket','need'],['Ivory trouser, matching','need'],[9,'have'],[11,'have']]}[z]};
+  return [own,almost,nw];
+}
+const LANECOL={own:['#141414','#3A3A3D','#111'],almost:['#B58A5A','#E6DDCB','#111'],new:['#EDE6D8','#E6DDCB','#111']};
+function renderLanes(){
+  chips($('#occasions'),OCC,state.occasion,i=>{state.occasion=i;renderLanes()});
+  chips($('#audience'),AUD,state.audience,i=>{state.audience=i;renderLanes()});
+  $$('#dial button').forEach(b=>b.classList.toggle('on',b.dataset.z===state.zone));
+  $('#daring').value=state.daring;$('#daring-l').textContent=DARING[state.daring-1];
+  $('#studio-h').textContent=`Three looks for ${state.occasion.toLowerCase()}`;
+  const looks=looksFor();
+  const order=state.laneFocus?[...looks].sort((a,b)=>(a.t===state.laneFocus?-1:b.t===state.laneFocus?1:0)):looks;
+  $('#lanes').innerHTML=order.map(l=>{
+    const pcs=l.pieces.map(([p,s])=>{const g=typeof p==='number'?state.closet.find(x=>x.id===p):null;const name=g?g.n:p;const col=g?g.col:'#c9c2b6';return `<li><span><i class="sw" style="background:${col};display:inline-block;vertical-align:middle"></i>${name}</span><span class="st ${s}">${s==='have'?'Own it':'Buy'}</span></li>`}).join('');
+    const c=LANECOL[l.t];const coat=l.t==='almost'&&state.zone==='edge'?'#B58A5A':null;
+    return `<div class="lane"><span class="tag ${l.t}">${l.tag}</span><div class="eyebrow">${state.zone==='inside'?'Inside your zone':state.zone==='edge'?'At the edge':'Outside your zone'} · daring ${state.daring}</div><h4>${l.title}</h4>
+      <div class="figwrap">${figure(c[0],c[1],c[2],null,null,coat)}<div style="flex:1"><p class="why">${l.why}</p><ul>${pcs}</ul></div></div>
+      <div class="foot"><div class="stars" data-look="${l.title}">${[1,2,3,4,5].map(i=>`<button onclick="rate(this,${i})">★</button>`).join('')}</div><div style="display:flex;gap:6px"><button class="btn sm" onclick="seeOnMe('${l.t}')">See it on me</button>${l.pieces.some(x=>x[1]==='need')?`<button class="btn sm" onclick="nearbyFor('${l.pieces.find(x=>x[1]==='need')[0]}')">Nearby</button>`:''}<button class="btn solid sm" onclick="wear('${l.title}')">Wear</button></div></div></div>`}).join('');
+}
+function rate(b,n){const p=b.parentElement;[...p.children].forEach((x,i)=>x.classList.toggle('on',i<n));toast(`${n} star${n>1?'s':''} · remembered`);state.memory.unshift({t:`Rated "${p.dataset.look}" ${n} stars.`,d:'Just now'})}
+function wear(t){state.ratings.unshift({n:t,d:'Today · '+state.occasion,r:0,top:'#141414',bot:'#3A3A3D',shoe:'#111'});toast('Logged as worn tonight');renderRatings()}
+function regen(){state.laneFocus=null;renderLanes();toast('Three new looks')}
+$$('#dial button').forEach(b=>b.onclick=()=>{state.zone=b.dataset.z;renderLanes()});
+$('#daring').addEventListener('input',e=>{state.daring=+e.target.value;$('#daring-l').textContent=DARING[state.daring-1]});
+$('#daring').addEventListener('change',()=>renderLanes());
+
+/* ---------- render overlay ---------- */
+function seeOnMe(l){
+  const c=LANECOL[l]||LANECOL.own;const ov=$('#overlay');
+  $('#ov-eyebrow').textContent=`Rendering with ${state.imgEngine.replace(' image model','')} · ${state.scans.length} reference photos`;
+  $('#ov-h').textContent='Fitting the look to you';$('#ov-render').innerHTML='';ov.classList.add('on');
+  setTimeout(()=>{if(!ov.classList.contains('on'))return;$('#ov-h').textContent='Rendered';$('#ov-render').innerHTML=figure(c[0],c[1],c[2]);$('#ov-p').textContent='Your face, your skin tone and your hair carried through. Swipe for a second angle in the full build.'},1700);
+}
+function closeOverlay(){$('#overlay').classList.remove('on')}
+function setImg(b,n){[...b.parentElement.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');state.imgEngine=n;$('#img-engine').textContent=n;toast('Renders now use '+n.split(' ')[0])}
+
+/* ---------- travel ---------- */
+function renderTravel(){
+  $('#vegas-plan').innerHTML=VEGAS.map(n=>`<div class="night"><div class="eyebrow">${n.e}</div><h4 style="color:var(--ivory)">${n.l}</h4><p style="color:var(--mist)">${n.p}</p></div>`).join('');
+  $('#pack-have').innerHTML=['Camel overcoat','Black silk shirt','Ivory knit polo','Bordeaux crew','Ink blazer','Charcoal trouser','Cream wide leg','Black denim','Chelsea boot','White sneaker','Gold chain'].map(x=>`<li>${x}</li>`).join('');
+  $('#pack-need').innerHTML=['Black satin shirt','Ivory pocket square'].map(x=>`<li>${x}</li>`).join('');
+}
+function planTrip(){
+  const w=$('#trip-where').value||'Miami',p=$('#trip-plan').value;
+  if(!p){toast('Tell me what each day holds');return}
+  const nights=p.split(/night|day/i).filter(x=>x.trim()).length||2;
+  toast(`${w}: ${nights} looks planned from your closet`);
+  state.memory.unshift({t:`Planning ${w}. ${nights} looks built.`,d:'Just now'});
+}
+
+/* ---------- trends ---------- */
+let trendSrc='All';
+function renderTrends(){
+  chips($('#trend-src'),['All','Runway','Street','Instagram','TikTok','Pinterest'],trendSrc,i=>{trendSrc=i;renderTrends()});
+  $('#trend-list').innerHTML=TRENDS.filter(t=>trendSrc==='All'||t.src===trendSrc).map(t=>`<div class="trend"><div class="art" style="background:linear-gradient(160deg,${t.cols[0]},${t.cols[1]})"><span>${t.src}</span></div><div class="body"><div class="src">${t.src} · match ${t.m}%</div><h4>${t.n}</h4><div class="bar"><i style="width:${t.m}%"></i></div><p>${t.why}</p><div style="display:flex;gap:6px"><button class="btn sm" onclick="seeOnMe('new')">See it on me</button><button class="btn sm solid" onclick="go('studio');state.laneFocus='new';state.zone='outside';renderLanes()">Try it</button></div></div></div>`).join('');
+}
+
+/* ---------- nearby ---------- */
+function renderStores(){$('#stores').innerHTML=STORES.map(s=>`<div class="store"><div><b>${s.n}</b><br><small>${s.s}</small></div><div><div class="d">${s.d}</div><div class="m">${s.m}% match</div></div></div>`).join('')}
+function nearbyFor(p){$('#nearby-piece').textContent=p;go('nearby')}
+function locate(){
+  if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>{$('#loc').textContent='Located · 64°';toast('Location on. Stores re ranked')},()=>toast('Location blocked. Showing Oakland'))}else toast('Showing Oakland');
+}
+
+/* ---------- ratings ---------- */
+function renderRatings(){
+  $('#ratings').innerHTML=state.ratings.map((r,i)=>`<div class="rating-row">${figure(r.top,r.bot,r.shoe,null,null,r.coat)}<div><b>${r.n}</b><small>${r.d}</small></div><div class="stars">${[1,2,3,4,5].map(k=>`<button class="${k<=r.r?'on':''}" onclick="state.ratings[${i}].r=${k};renderRatings();toast('Remembered')">★</button>`).join('')}</div></div>`).join('');
+}
+
+/* ---------- me ---------- */
+function renderMe(){
+  const p=state.profile;
+  $('#me-kv').innerHTML=[['Frame',p.shape+', '+p.height.toLowerCase()],['Skin',`<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${p.skin};vertical-align:middle;margin-right:6px"></span>${p.undertone} undertone`],['Hair',`${p.hairT}, ${p.hairL.toLowerCase()}, ${p.hairC.toLowerCase()}`],['Expression',p.express.join(', ')],['Three words',p.words.join(', ')],['Comfort zone',{inside:'Inside',edge:'At the edge',outside:'Outside'}[p.zone]],['Never',p.nevers.join(', ')||'Nothing yet']].map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('#memory').innerHTML=state.memory.map(m=>`<div><div>${m.t}<small>${m.d}</small></div></div>`).join('')||'<p class="sub">Nothing yet. Rate a look to start.</p>';
+  $('#lib').innerHTML=state.lib.map(l=>`<div><div class="ic">Aa</div><div>${l.n}<small>${l.s}</small></div><span class="st">Cited</span></div>`).join('');
+}
+$('#lib-file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;state.lib.unshift({n:f.name.replace(/\.[^.]+$/,''),s:'Reading · '+Math.round(f.size/1024)+' KB'});renderMe();toast('Added to your library')});
+
+/* ---------- quiz ---------- */
+let qs=1;
+function renderQuiz(){
+  $('#shapes').innerHTML=SHAPES.map(([n,d])=>`<button class="${state.profile.shape===n?'on':''}" onclick="state.profile.shape='${n}';renderQuiz()"><svg viewBox="0 0 34 54"><path d="${d}"/></svg>${n}</button>`).join('');
+  $('#skins').innerHTML=SKINS.map(c=>`<button style="background:${c}" class="${state.profile.skin===c?'on':''}" aria-label="Skin tone" onclick="state.profile.skin='${c}';renderQuiz()"></button>`).join('');
+  chips($('#express'),EXPRESS,state.profile.express,i=>{const a=state.profile.express;a.includes(i)?a.splice(a.indexOf(i),1):a.push(i);renderQuiz()});
+  chips($('#words'),WORDS,state.profile.words,i=>{const a=state.profile.words;a.includes(i)?a.splice(a.indexOf(i),1):(a.length<3?a.push(i):toast('Three words. Swap one out.'));renderQuiz()},true);
+  chips($('#nevers'),NEVERS,state.profile.nevers,i=>{const a=state.profile.nevers;a.includes(i)?a.splice(a.indexOf(i),1):a.push(i);renderQuiz()});
+  $$('#q-dial button').forEach(b=>{b.classList.toggle('on',b.dataset.z===state.profile.zone);b.onclick=()=>{state.profile.zone=b.dataset.z;state.zone=b.dataset.z;renderQuiz()}});
+  $('#push').innerHTML=[['Would you wear an ivory suit to a work dinner?','Yes','With the right room','No'],['A bold print, once, if it photographed well?','Yes','Maybe','Never'],['Let the app pick one look a week you did not choose?','Yes','Once a month','No']].map((q,i)=>`<div class="card" style="margin-top:10px"><p style="margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.25">${q[0]}</p><div class="seg" id="push-${i}"><button>${q[1]}</button><button class="on">${q[2]}</button><button>${q[3]}</button></div></div>`).join('');
+  [0,1,2].forEach(i=>segInit('push-'+i));
+  $('#q-steps').innerHTML=[1,2,3,4,5,6].map(i=>`<i class="${i<=qs?'on':''}"></i>`).join('');
+  $('#q-step').textContent=qs;$$('.q').forEach(q=>q.classList.toggle('on',+q.dataset.q===qs));
+  $('#q-back').style.visibility=qs===1?'hidden':'visible';$('#q-next').textContent=qs===6?'Save profile':'Next';
+}
+function qStep(d){
+  if(qs===6&&d===1){const own=$('#express-own').value;if(own)state.profile.express.push(own);state.memory.unshift({t:'Profile updated. Comfort zone: '+state.profile.zone+'.',d:'Just now'});toast('Profile saved');go('me');return}
+  qs=Math.min(6,Math.max(1,qs+d));renderQuiz();$('#screens').scrollTop=0;
+}
+segInit('height',v=>state.profile.height=v);segInit('undertone',v=>state.profile.undertone=v);segInit('hair-t',v=>state.profile.hairT=v);segInit('hair-l',v=>state.profile.hairL=v);segInit('hair-c',v=>state.profile.hairC=v);
+
+/* ---------- dictation ---------- */
+const mic=$('#mic'),sheet=$('#sheet');let listening=false,editMode=false,taps=0,tapT,simT,transcript='',target=null;
+const SIM='I am going to Las Vegas for three nights on the 25th. Night one is a rooftop dinner, night two is a show, night three is a club.';
+mic.addEventListener('click',()=>{taps++;clearTimeout(tapT);tapT=setTimeout(()=>{if(taps>=2)startEdit();else toggleListen();taps=0},260)});
+function showTranscript(extra){$('#transcript').innerHTML=(transcript?transcript.replace(/\n/g,' '):'')+(extra||'')+'<span class="cur"></span>'}
+function toggleListen(){
+  if(listening){stopListen();return}
+  listening=true;editMode=false;mic.classList.add('live');mic.classList.remove('edit');sheet.classList.add('open');
+  $('#sheet-title').textContent='Listening';$('#sheet-mode').textContent='Tap to stop · double tap to edit';$('#wave').innerHTML='<i></i>'.repeat(26);$('#wave').classList.remove('idle');
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR&&!location.hostname.includes('claude')){try{const r=new SR();let got=false;r.continuous=true;r.interimResults=true;r.onresult=e=>{got=true;let t='';for(const res of e.results)t+=res[0].transcript;transcript=t;showTranscript()};r.onerror=()=>{if(!got)simulate()};r.onend=()=>{if(!got&&listening)simulate()};r.start();mic._r=r;setTimeout(()=>{if(!got&&listening&&mic._r===r){got=true;try{r.stop()}catch(e){}mic._r=null;simulate()}},1800);return}catch(e){}}
+  simulate();
+}
+function simulate(){let i=0;transcript='';clearInterval(simT);simT=setInterval(()=>{i+=2;transcript=SIM.slice(0,i);showTranscript();if(i>=SIM.length){clearInterval(simT);stopListen(true)}},38)}
+function stopListen(keep){listening=false;mic.classList.remove('live');clearInterval(simT);if(mic._r){try{mic._r.stop()}catch(e){}mic._r=null}$('#wave').classList.add('idle');$('#sheet-title').textContent='Heard';$('#sheet-mode').textContent='Double tap the mic to edit by voice';if(!keep&&!transcript)closeSheet()}
+function startEdit(){
+  if(!transcript){toggleListen();return}
+  stopListen(true);editMode=true;mic.classList.add('edit');sheet.classList.add('open');
+  $('#sheet-title').textContent='Editing';$('#sheet-mode').textContent='Say the change';$('#wave').innerHTML='<i></i>'.repeat(26);$('#wave').classList.remove('idle');
+  const cmd='Make that four nights, and night three is a lounge, not a club.';let i=0;clearInterval(simT);
+  simT=setInterval(()=>{i+=2;showTranscript(`<span style="color:var(--gold-2)"> ${cmd.slice(0,i)}</span>`);if(i>=cmd.length){clearInterval(simT);setTimeout(applyEdit,500)}},38);
+}
+function applyEdit(){
+  transcript=transcript.replace('three nights','<mark>four nights</mark>').replace('night three is a club','night three is a <mark>lounge</mark>');
+  showTranscript();editMode=false;mic.classList.remove('edit');$('#wave').classList.add('idle');$('#sheet-title').textContent='Edited';$('#sheet-mode').textContent='Two changes applied';
+  setTimeout(()=>{transcript=transcript.replace(/<\/?mark>/g,'');},2500);
+}
+function closeSheet(){sheet.classList.remove('open');stopListen(true);transcript='';showTranscript();mic.classList.remove('edit');editMode=false}
+function dictateInto(id){target=id;toggleListen()}
+function sendTranscript(){
+  const text=transcript.replace(/<[^>]+>/g,'');if(!text){toast('Nothing to send');return}
+  const cur=$('.screen.on').dataset.screen;
+  if(target){$('#'+target).value=text;target=null;toast('Dictated into the plan')}
+  else if(cur==='travel'){$('#trip-plan').value=text;$('#trip-where').value=text.match(/to ([A-Z][a-z]+(?: [A-Z][a-z]+)?)/)?.[1]||'';toast('Trip drafted from your voice')}
+  else if(cur==='studio'){toast('Studio updated from your voice');state.memory.unshift({t:'Said: "'+text.slice(0,60)+'…"',d:'Just now'})}
+  else{go('travel');$('#trip-plan').value=text;$('#trip-where').value=text.match(/to ([A-Z][a-z]+(?: [A-Z][a-z]+)?)/)?.[1]||'';toast('Trip drafted from your voice')}
+  sheet.classList.remove('open');transcript='';showTranscript();
+}
+
+/* ---------- boot ---------- */
+$('#tabs').innerHTML=TABS.map(([s,l,ic])=>`<button data-s="${s}" onclick="go('${s}')"><svg viewBox="0 0 24 24">${ic}</svg>${l}</button>`).join('');
+$('#index').innerHTML=SCREENS.map(([s,l],i)=>`<button data-s="${s}" onclick="closeWelcome();go('${s}')"><span>${l}</span><span>${String(i+1).padStart(2,'0')}</span></button>`).join('');
+renderToday();renderScans();renderCloset();renderLanes();renderTravel();renderTrends();renderStores();renderRatings();renderMe();renderQuiz();go('today');
+$('#wave').classList.add('idle');$('#wave').innerHTML='<i></i>'.repeat(26);
+try{if(localStorage.getItem('tco-seen')){closeWelcome()}else localStorage.setItem('tco-seen','1')}catch(e){}
+</script>
+</body>
+</html>
