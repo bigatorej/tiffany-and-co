@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Issue · Tiffany and Co.</title>
+<meta name="description" content="A fashion magazine cover as a landing page. Tiffany and Co. website mockup two.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+:root{--ivory:#F4EFE6;--ivory-2:#EBE4D8;--paper:#FBF8F2;--linen:#DFD6C7;--onyx:#121110;--onyx-2:#1E1C1A;--graphite:#3A3733;--ash:#6E6963;--mist:#A39D94;--gold:#B8955A;--gold-2:#D4B87C;--gold-dark:#8C6E3B;--bordeaux:#5B1F2B;--moss:#3F4A3A;--r:2px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--onyx);font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.05;text-wrap:balance}
+h1 em,h2 em,h3 em,h4 em,.em{font-style:italic;color:var(--gold-dark)}
+.dark h1 em,.dark h2 em,.dark h3 em,.dark h4 em,.dark .em{color:var(--gold-2)}
+p{margin:0 0 14px;max-width:60ch}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0;text-align:left}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+input{font:inherit;color:inherit}
+.eyebrow{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dark);font-weight:500}
+.dark .eyebrow{color:var(--gold-2)}
+.label{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);font-weight:500}
+.wm{font-family:"Cormorant Garamond",serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.wm em{font-style:italic;text-transform:none;letter-spacing:.02em;color:var(--gold-dark)}
+.dark .wm em{color:var(--gold-2)}
+.btn{display:inline-block;font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:12px 18px;border:1px solid var(--onyx);color:var(--onyx);background:transparent;border-radius:var(--r);font-weight:500;transition:.2s;text-align:center;line-height:1.2;cursor:pointer}
+.btn:hover{background:var(--onyx);color:var(--ivory)}
+.btn.solid{background:var(--onyx);color:var(--ivory)}
+.btn.solid:hover{background:var(--graphite)}
+.btn.sm{padding:9px 13px;font-size:10px}
+.dark .btn{border-color:var(--ivory);color:var(--ivory)}
+.dark .btn:hover{background:var(--ivory);color:var(--onyx)}
+.dark .btn.solid{background:var(--ivory);color:var(--onyx)}
+.dark .btn.solid:hover{background:var(--ivory-2)}
+.dark{background:var(--onyx);color:var(--ivory)}
+.dark p{color:var(--mist)}
+.dark .label{color:var(--mist)}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(244,239,230,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linen)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;position:relative}
+.nav nav{display:flex;gap:22px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.nav nav a{padding:6px 0;border-bottom:1px solid transparent;white-space:nowrap}
+.nav nav a:hover{border-color:var(--gold)}
+.nav .right{display:flex;align-items:center;gap:14px}
+.nav .btn{white-space:nowrap}
+.menu-btn{display:none;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:8px 0}
+.dot{display:inline-block;width:5px;height:5px;background:var(--gold);vertical-align:middle}
+.dot.moss{background:var(--moss)}.dot.bdx{background:var(--bordeaux)}
+.hair{border:0;border-top:1px solid var(--linen);margin:0}
+.lanetag{display:inline-flex;align-items:center;gap:8px;font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.dark .lanetag{color:var(--mist)}
+.lanetag i{width:6px;height:6px;display:inline-block;background:var(--gold);flex:0 0 auto}
+.lanetag.own i{background:var(--moss)}.lanetag.new i{background:var(--bordeaux)}
+.figure svg{width:100%;height:100%;display:block}
+.pieces{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:13.5px}
+.pieces li{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.pieces li span:first-child::before{content:"";display:inline-block;width:5px;height:5px;background:var(--gold);margin-right:10px;vertical-align:middle}
+.st{font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--linen);color:var(--ash);border-radius:var(--r);white-space:nowrap}
+.st.have{border-color:var(--moss);color:var(--moss)}
+.st.need{border-color:var(--bordeaux);color:var(--bordeaux)}
+.dark .st.have{color:#8fa38f;border-color:#8fa38f}.dark .st.need{color:#c98a95;border-color:#c98a95}
+.stars{display:flex;gap:3px}
+.stars button{font-size:18px;line-height:1;color:var(--linen);transition:.15s}
+.stars button.on{color:var(--gold)}
+.dark .stars button{color:var(--graphite)}.dark .stars button.on{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);background:var(--onyx);color:var(--ivory);font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;opacity:0;transition:.25s;pointer-events:none;z-index:80;white-space:nowrap;border-radius:var(--r);max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.foot{border-top:1px solid var(--linen);margin-top:90px;padding:44px 0 52px}
+.foot .wrap{display:grid;gap:18px}
+.foot .tag{font-family:"Cormorant Garamond",serif;font-size:30px;margin:0;line-height:1}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.foot nav a{border-bottom:1px solid transparent;padding-bottom:2px}
+.foot nav a:hover{border-color:var(--gold)}
+.foot small{font-size:11px;color:var(--ash);letter-spacing:.04em;max-width:70ch}
+.sec{padding:clamp(56px,8vw,110px) 0}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(34px,4.6vw,58px)}
+.sec-h p{margin:0;color:var(--ash);max-width:44ch}
+.dark .sec-h p{color:var(--mist)}
+@media (max-width:820px){
+  .nav nav{display:none}
+  .nav.open nav{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--ivory);border-bottom:1px solid var(--linen);padding:18px clamp(16px,4vw,48px) 22px;gap:14px;margin:0 calc(-1 * clamp(16px,4vw,48px))}
+  .menu-btn{display:inline-block}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.masthead{padding:30px 0 0;text-align:center}
+.masthead .big{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(34px,8.6vw,124px);letter-spacing:.14em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.masthead .big em{font-style:italic;text-transform:none;letter-spacing:.02em;color:var(--gold-dark)}
+.masthead .issue{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--onyx);border-bottom:1px solid var(--linen);padding:10px 0;margin-top:16px;flex-wrap:wrap}
+.contents{display:flex;gap:8px 30px;justify-content:center;flex-wrap:wrap;padding:16px 0 0}
+.contents a{display:inline-flex;align-items:baseline;gap:8px;font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite);border-bottom:1px solid transparent;padding-bottom:3px}
+.contents a b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:16px;color:var(--gold-dark);letter-spacing:.06em}
+.contents a:hover{border-color:var(--gold)}
+.pg{position:relative}
+.folio{position:absolute;top:26px;right:clamp(16px,4vw,48px);font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--ash);z-index:2}
+.dark .folio{color:var(--mist)}
+.cover{margin-top:26px;min-height:94vh;display:flex;align-items:stretch}
+.cover .wrap{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,5vw,80px);padding-top:clamp(64px,9vw,120px);padding-bottom:56px;width:100%;align-items:end}
+.cover h1{font-size:clamp(66px,14.5vw,236px);line-height:.86;letter-spacing:-.02em;margin:0 0 18px}
+.cover .kicker{margin-bottom:24px}
+.coverlines{display:grid;gap:16px;margin-top:38px;max-width:520px}
+.coverlines a{display:grid;gap:3px;border-left:1px solid var(--gold);padding-left:16px}
+.coverlines a b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:26px;line-height:1.05;color:var(--ivory)}
+.coverlines a:hover b{color:var(--gold-2)}
+.cover .figbox{width:min(340px,72vw);border:1px solid var(--gold);padding:28px;display:grid;gap:14px;justify-items:center;position:relative}
+.cover .figbox .figure{width:60%;aspect-ratio:100/230}
+.cover .figbox .cap{text-align:center}
+.cover .figbox .cap b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;line-height:1.1;margin-top:4px}
+.cover .foot-line{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--graphite);padding-top:16px;flex-wrap:wrap}
+.cover .foot-line b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px}
+
+.runway{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 18px}
+.look{display:grid;gap:12px;text-align:left;min-width:0;width:100%}
+.look .stage{aspect-ratio:3/4;min-width:0;overflow:hidden;background:var(--paper);border:1px solid var(--linen);display:grid;place-items:center;position:relative;border-radius:var(--r);transition:.2s}
+.look:hover .stage{border-color:var(--gold)}
+.look .stage .figure{width:34%;aspect-ratio:100/230}
+.look .stage .n{position:absolute;top:10px;left:12px;font-family:"Cormorant Garamond",serif;font-size:15px;letter-spacing:.14em;color:var(--gold-dark)}
+.look .cap b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;line-height:1.08;margin:4px 0 6px}
+.spread{position:fixed;top:0;right:0;bottom:0;width:min(460px,100vw);background:var(--onyx);color:var(--ivory);z-index:40;padding:34px 32px 40px;transform:translateX(102%);transition:transform .4s cubic-bezier(.2,.7,.2,1);overflow-y:auto;display:grid;gap:18px;align-content:start}
+.spread.open{transform:none}
+.spread .close{position:absolute;top:22px;right:26px;font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--mist);border-bottom:1px solid transparent}
+.spread .close:hover{border-color:var(--gold);color:var(--ivory)}
+.spread h3{font-size:40px;line-height:1}
+.spread .body{display:grid;grid-template-columns:90px 1fr;gap:20px;align-items:start}
+.spread .figure{width:90px;height:207px}
+.spread .pieces{font-size:13.5px;color:var(--ivory)}
+.spread .why{font-size:14px;color:var(--mist);margin:0 0 12px}
+.scrim{position:fixed;inset:0;background:rgba(18,17,16,.35);z-index:39;opacity:0;pointer-events:none;transition:.3s}
+.scrim.on{opacity:1;pointer-events:auto}
+
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.quote{padding:38px clamp(20px,4vw,56px) 42px;border-top:1px solid var(--onyx);display:grid;gap:16px;align-content:start}
+.quote:nth-child(2n){border-left:1px solid var(--linen)}
+.quote blockquote{margin:0;font-family:"Cormorant Garamond",serif;font-size:clamp(30px,3.6vw,48px);line-height:1.05;font-weight:500}
+.quote blockquote em{font-style:italic;color:var(--gold-dark)}
+.quote a{display:inline-flex;gap:10px;align-items:baseline;font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.quote a b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:16px;color:var(--gold-dark)}
+
+.zonechips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:9px 13px;border:1px solid var(--linen);color:var(--graphite);border-radius:var(--r);font-weight:500;transition:.15s}
+.chip.on{background:var(--onyx);color:var(--ivory);border-color:var(--onyx)}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--onyx);margin-top:26px}
+.col{padding:30px clamp(18px,3vw,40px) 34px;border-right:1px solid var(--linen);display:grid;gap:14px;align-content:start}
+.col:last-child{border-right:0}
+.col:first-child{padding-left:0}
+.col h3{font-size:34px;line-height:1.02;min-height:2.1em}
+.col .lede{font-family:"Jost",sans-serif;font-size:15px;line-height:1.65;color:var(--graphite);margin:0}
+.col .lede::first-letter{font-family:"Cormorant Garamond",serif;font-size:64px;line-height:.8;float:left;padding:8px 8px 0 0;color:var(--gold-dark);font-weight:500}
+.col .figrow{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;border-top:1px solid var(--linen);padding-top:16px}
+.col .figrow .figure{width:64px;height:147px}
+.col .pieces{font-size:13px}
+
+.sub{border:1px solid var(--onyx);padding:clamp(32px,6vw,72px);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative}
+.sub h2{font-size:clamp(44px,6.5vw,92px);line-height:.95}
+.sub .stack{display:grid;gap:12px}
+.sub .stack div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--linen);padding-bottom:10px}
+.sub .stack b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px}
+
+.pager{position:fixed;right:clamp(16px,4vw,48px);bottom:24px;z-index:35;display:flex;align-items:center;gap:12px;background:var(--ivory);border:1px solid var(--onyx);padding:8px 8px 8px 14px;border-radius:var(--r)}
+.pager span{font-family:"Cormorant Garamond",serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.pager button{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;padding:6px 10px;border-left:1px solid var(--linen)}
+.pager button:hover{color:var(--gold-dark)}
+
+@media (max-width:1000px){.runway{grid-template-columns:repeat(3,minmax(0,1fr))}.cols{grid-template-columns:1fr}.col{border-right:0;border-bottom:1px solid var(--linen);padding-left:0;padding-right:0}.col h3{min-height:0}.sub{grid-template-columns:1fr}}
+@media (max-width:820px){.cover .wrap{grid-template-columns:1fr;align-items:start}.cover .figbox{justify-self:center}.quotes{grid-template-columns:1fr}.quote:nth-child(2n){border-left:0}.runway{grid-template-columns:repeat(2,minmax(0,1fr))}.cover h1{font-size:clamp(60px,17vw,120px)}}
+@media (max-width:520px){.masthead .big{letter-spacing:.08em}.pager{bottom:14px;right:14px}.spread{padding:28px 20px 36px}}
+</style>
+</head>
+<body>
+<header class="nav " id="top"><div class="wrap"><a class="wm" href="index.html">Tiffany <em>and</em> Co.</a><nav><a href="#cover">p.02 Cover</a><a href="#runway">p.04 Runway</a><a href="#quotes">p.06 Quotes</a><a href="#lanes">p.08 Lanes</a><a href="#subscribe">p.10 Subscribe</a></nav><div class="right"><a class="btn sm" href="../index.html">Open the app</a><button class="menu-btn" type="button">Menu</button></div></div></header><section class="masthead">
+  <div class="wrap">
+    <div class="big">Tiffany <em>and</em> Co.</div>
+    <div class="issue"><span class="label">Issue 01 · Autumn 2026</span><span class="label" style="color:var(--gold-dark)">The Look Good Issue</span><span class="label">Look good. Feel good.</span></div>
+    <div class="contents" id="contents">
+      <a href="#cover"><b>02</b>The cover</a><a href="#runway"><b>04</b>The runway</a><a href="#quotes"><b>06</b>The quotes</a><a href="#lanes"><b>08</b>Three lanes</a><a href="#subscribe"><b>10</b>Subscribe</a>
+    </div>
+  </div>
+</section>
+
+<section class="cover dark pg" id="cover" data-pg="02">
+  <span class="folio">Page 02</span>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow kicker">The cover story · a stylist that learns you</div>
+      <h1>Dressed<br>for the <em>room.</em></h1>
+      <p style="font-size:16px;max-width:44ch">It learns your body, your coloring, your closet and your comfort zone. Then it dresses you for the room you are walking into.</p>
+      <div class="coverlines">
+        <a href="#lanes"><span class="label">Page 08</span><b>Every look comes three ways. From your closet, one piece away, entirely new.</b></a>
+        <a href="#quotes"><span class="label">Page 06</span><b>The comfort dial. Inside, at the edge, outside.</b></a>
+        <a href="#runway"><span class="label">Page 04</span><b>Eight looks on the runway, worn by you.</b></a>
+      </div>
+    </div>
+    <div class="figbox">
+      <div class="figure" data-fig="#141414|#3A3A3D|#111|#6B4423"></div>
+      <div class="cap"><span class="eyebrow">Tonight · at the edge of your zone</span><b>Ink on ink, one warm note.</b></div>
+    </div>
+    <div class="foot-line"><b>Look good. Feel good.</b><span class="label">Autumn 2026 · Oakland · No price. No ads. No brand pays to be here.</span></div>
+  </div>
+</section>
+
+<section class="sec pg" id="runway" data-pg="04">
+  <span class="folio">Page 04</span>
+  <div class="wrap">
+    <div class="sec-h"><h2>The <em>runway.</em></h2><p>Eight looks, eight bodies, eight shades. Tap any look to open the spread.</p></div>
+    <div class="runway" id="runway-grid"></div>
+  </div>
+</section>
+
+<div class="scrim" id="scrim" onclick="closeSpread()"></div>
+<aside class="spread dark" id="spread" aria-hidden="true">
+  <button class="close" type="button" onclick="closeSpread()">Close</button>
+  <span class="eyebrow" id="sp-eye">Look 01</span>
+  <h3 id="sp-title">Ink on ink, one warm note.</h3>
+  <span class="lanetag" id="sp-lane"><i></i>From your closet</span>
+  <div class="body"><div class="figure" id="sp-fig"></div><div><p class="why" id="sp-why"></p><ul class="pieces" id="sp-pieces"></ul></div></div>
+  <div class="stars" id="sp-stars"></div>
+  <div class="btnrow"><button class="btn sm" type="button" onclick="toast('Rendered · you, not a model')">See it on me</button><button class="btn sm solid" type="button" onclick="toast('Logged as worn tonight')">Wear</button></div>
+</aside>
+
+<section class="sec pg" id="quotes" data-pg="06">
+  <span class="folio">Page 06</span>
+  <div class="wrap">
+    <div class="sec-h"><h2>In the app's own <em>words.</em></h2><p>Every line below is copy from the prototype. The voice is the product.</p></div>
+    <div class="quotes">
+      <div class="quote"><blockquote>Stand tall. <em>We</em> do the rest.</blockquote><p>One photo, front on, in fitted clothes and good light. The app reads proportion, shoulder line, waist placement and leg length.</p><a href="../index.html"><b>Scan</b>In the prototype</a></div>
+      <div class="quote"><blockquote>Set the room. We set the <em>look.</em></blockquote><p>Tell the studio where you are going and who is there. Then choose how far from your comfort zone you want to travel.</p><a href="#lanes"><b>08</b>Three lanes</a></div>
+      <div class="quote"><blockquote>Inside. At the <em>edge.</em> Outside.</blockquote><p>Where you live most days. You can step out of it any time in the studio. The dial and the daring slider change the looks in real time.</p><a href="#lanes"><b>08</b>Turn the dial</a></div>
+      <div class="quote"><blockquote>Pack for the <em>plan,</em> not the suitcase.</blockquote><p>Say where you are going and what each night holds. The app builds a look per night from your closet, then lists the few pieces worth buying.</p><a href="atlas.html"><b>Atlas</b>The travel mockup</a></div>
+      <div class="quote"><blockquote>The app learns from the <em>pattern,</em> not the single score.</blockquote><p>Your five star looks share one thing. A single strong shoulder and a quiet lower half. Monochrome rates a full star higher than color blocking.</p><a href="../index.html"><b>Rate</b>In the prototype</a></div>
+      <div class="quote"><blockquote>Your memory <em>profile.</em></blockquote><p>Everything the app knows about you, in one place. Edit any of it. Delete all of it in one tap.</p><a href="../index.html"><b>Me</b>In the prototype</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec pg" id="lanes" data-pg="08">
+  <span class="folio">Page 08</span>
+  <div class="wrap">
+    <div class="sec-h"><h2>Three <em>lanes.</em></h2><div><p style="margin-bottom:12px">Same room, same you. Turn the dial and each column re cuts itself.</p><div class="zonechips" id="zonechips"><button class="chip" type="button" data-z="inside">Inside</button><button class="chip on" type="button" data-z="edge">At the edge</button><button class="chip" type="button" data-z="outside">Outside</button></div></div></div>
+    <div class="cols" id="cols"></div>
+  </div>
+</section>
+
+<section class="sec pg" id="subscribe" data-pg="10">
+  <span class="folio">Page 10</span>
+  <div class="wrap">
+    <div class="sub">
+      <div>
+        <div class="eyebrow">Subscribe · the issue lives on your phone</div>
+        <h2 style="margin:14px 0 18px">Get the <em>issue.</em></h2>
+        <p style="font-size:16px">The prototype is live. Build your profile in six steps or walk in with the sample. Every look, every night, every trip.</p>
+        <div class="btnrow"><a class="btn solid" href="../index.html">Open the prototype</a><a class="btn" href="index.html">All five mockups</a></div>
+      </div>
+      <div class="stack">
+        <div><span class="label">Price</span><b>None</b></div>
+        <div><span class="label">Ads</span><b>None</b></div>
+        <div><span class="label">Photos</span><b>Stay on device</b></div>
+        <div><span class="label">Brands</span><b>Never paid to be here</b></div>
+        <div><span class="label">Issues</span><b>One, every evening</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pager" id="pager"><span id="pg-now">Page 02</span><button type="button" onclick="nextPage()">Next page</button></div>
+<footer class="foot"><div class="wrap"><div class="wm">Tiffany <em>and</em> Co.</div><p class="tag">Look good. Feel <em>good.</em></p><nav><a href="index.html">All mockups</a><a href="../index.html">The app</a><a href="atelier.html">The Atelier</a><a href="mirror.html">The Mirror</a><a href="concierge.html">The Concierge</a><a href="atlas.html">The Atlas</a></nav><small>Mockup · September 17th, 2026 · Every stylist response on this page is simulated so the design can be judged. The prototype names the live services behind each one.</small></div></footer>
+<div class="toast" id="toast">Saved</div>
+<script>
+const SKINS=['#FBE8D8','#F3D7BE','#E8C39E','#D9A97C','#C98F5E','#B27A4C','#9A6238','#864F2E','#6B4423','#54331B','#3E2414','#2A170D'];
+function figure(top,bot,shoe,skin,hair,coat){
+  skin=skin||'#6B4423';hair=hair||'#1a1410';
+  const hairShape=hair==='none'?'':`<path d="M34 22 C34 8 66 8 66 22 L66 26 C60 20 40 20 34 26 Z" fill="${hair}"/>`;
+  const coatShape=coat?`<path d="M30 60 L20 64 L14 130 L26 132 L30 100 L30 150 L70 150 L70 100 L74 132 L86 130 L80 64 L70 60 Z" fill="${coat}" opacity=".95"/>`:'';
+  return `<svg viewBox="0 0 100 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="26" r="15" fill="${skin}"/>${hairShape}<rect x="45" y="40" width="10" height="10" fill="${skin}"/><path d="M30 60 L20 64 L14 122 L26 124 L30 96 L30 132 L70 132 L70 96 L74 124 L86 122 L80 64 L70 60 Z" fill="${top}"/>${coatShape}<path d="M31 132 L28 212 L44 212 L50 150 L56 212 L72 212 L69 132 Z" fill="${bot}"/><path d="M27 212 L27 224 L46 224 L46 212 Z" fill="${shoe}"/><path d="M54 212 L54 224 L73 224 L73 212 Z" fill="${shoe}"/></svg>`;
+}
+function drawFigs(root){(root||document).querySelectorAll('[data-fig]').forEach(el=>{const p=el.dataset.fig.split('|');el.innerHTML=figure(p[0],p[1],p[2],p[3]||'',p[4]||'',p[5]||'')})}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(t){let e=$('#toast');if(!e){e=document.createElement('div');e.id='toast';e.className='toast';document.body.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1900)}
+function rate(b,n){const p=b.parentElement;[...p.children].forEach((x,i)=>x.classList.toggle('on',i<n));toast(n+' star'+(n>1?'s':'')+' · remembered')}
+const menuBtn=document.querySelector('.menu-btn');if(menuBtn){menuBtn.onclick=()=>{const n=menuBtn.closest('.nav');n.classList.toggle('open');menuBtn.textContent=n.classList.contains('open')?'Close':'Menu'};document.querySelectorAll('.nav nav a').forEach(a=>a.addEventListener('click',()=>{menuBtn.closest('.nav').classList.remove('open');menuBtn.textContent='Menu'}))}
+drawFigs();
+const LOOKS=[
+ {t:'Ink on ink, one warm note',l:'own',tag:'From your closet',f:['#141414','#3A3A3D','#111','#6B4423',''],why:'Everything here you have worn and rated four stars or more. The frame wants a quiet lower half, so the trouser stays dark.',p:[['Black silk shirt','have'],['Charcoal pleated trouser','have'],['Chelsea boot','have'],['One fine gold chain','have']]},
+ {t:'Camel over cream',l:'almost',tag:'One piece away',f:['#EDE6D8','#E6DDCB','#F2F0EA','#F3D7BE','#3b2a1a','#B58A5A'],why:'The camel overcoat over cream wide leg trouser. Add a cream knit and you have tonal dressing from the runway feed.',p:[['Camel overcoat','have'],['Cream wide leg trouser','have'],['Cream cashmere knit','need'],['White leather sneaker','have']]},
+ {t:'Bordeaux and charcoal',l:'own',tag:'From your closet',f:['#5B1F2B','#3A3A3D','#111','#2A170D','none'],why:'Deep wine replacing black for evening. Warm on your undertone, and you own the crew.',p:[['Bordeaux cashmere crew','have'],['Charcoal pleated trouser','have'],['Chelsea boot','have']]},
+ {t:'Moss and ivory',l:'new',tag:'Entirely new',f:['#EDE6D8','#E6DDCB','#F2F0EA','#D9A97C','#1a1410','#3F4A3A'],why:'Moss green is the color your undertone has been waiting for. Paired with ivory it flatters deep skin like nothing in your closet does yet.',p:[['Moss wool overshirt','need'],['Ivory tee, heavy','need'],['Cream wide leg trouser','have'],['White leather sneaker','have']]},
+ {t:'The relaxed suit',l:'almost',tag:'One piece away',f:['#3A3A3D','#1B1F2A','#111','#9A6238','#1a1410','#1B1F2A'],why:'Soft shoulder, wide leg, worn with a knit not a shirt. Your frame carries the shoulder without padding.',p:[['Ink wool blazer','have'],['Ink wool trouser, matching','need'],['Charcoal knit','have'],['Chelsea boot','have']]},
+ {t:'Full black, gold chain',l:'own',tag:'From your closet',f:['#141414','#1E1E22','#111','#54331B','#b8a68a'],why:'A single fine chain, nothing else. Already your habit. Keep it.',p:[['Black silk shirt','have'],['Black straight denim','have'],['Chelsea boot','have'],['Gold chain, fine','have']]},
+ {t:'Ivory suit, black boot',l:'new',tag:'Entirely new',f:['#EDE6D8','#E6DDCB','#111','#FBE8D8','#3b2a1a'],why:'An ivory suit with the shoulder cut clean. Loud without a logo. Your never list is honored: no prints, no sheer.',p:[['Ivory double breasted jacket','need'],['Ivory trouser, matching','need'],['Chelsea boot','have'],['Gold chain, fine','have']]},
+ {t:'Satin under wool',l:'almost',tag:'One piece away',f:['#141414','#1E1E22','#111','#B27A4C','#1a1410','#1B1F2A'],why:'A black satin shirt under the ink blazer. Open two buttons, gold chain. This is the one that gets remembered.',p:[['Ink wool blazer','have'],['Black satin shirt','need'],['Black straight denim','have'],['Chelsea boot','have']]}
+];
+const pcs=l=>l.map(([n,s])=>`<li><span>${n}</span><span class="st ${s}">${s==='have'?'Own it':'Buy'}</span></li>`).join('');
+$('#runway-grid').innerHTML=LOOKS.map((k,i)=>`<button class="look" type="button" onclick="openSpread(${i})"><div class="stage"><span class="n">${String(i+1).padStart(2,'0')}</span><div class="figure">${figure(...k.f)}</div></div><div class="cap"><span class="lanetag ${k.l}"><i></i>${k.tag}</span><b>${k.t}.</b><span class="label">Look ${String(i+1).padStart(2,'0')} · tap to open</span></div></button>`).join('');
+function openSpread(i){const k=LOOKS[i];$('#sp-eye').textContent=`Look ${String(i+1).padStart(2,'0')} · page 04`;$('#sp-title').textContent=k.t+'.';$('#sp-lane').className='lanetag '+k.l;$('#sp-lane').innerHTML=`<i></i>${k.tag}`;$('#sp-fig').innerHTML=figure(...k.f);$('#sp-why').textContent=k.why;$('#sp-pieces').innerHTML=pcs(k.p);$('#sp-stars').innerHTML=[1,2,3,4,5].map(n=>`<button type="button" onclick="rate(this,${n})" aria-label="${n} stars">★</button>`).join('');$('#spread').classList.add('open');$('#spread').setAttribute('aria-hidden','false');$('#scrim').classList.add('on')}
+function closeSpread(){$('#spread').classList.remove('open');$('#spread').setAttribute('aria-hidden','true');$('#scrim').classList.remove('on')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSpread()});
+
+const T={own:{inside:'Full black, gold chain',edge:'Ink on ink, one warm note',outside:'Bordeaux head to toe'},almost:{inside:'The relaxed suit',edge:'Camel and cream',outside:'Satin under wool'},nw:{inside:'Charcoal, softened',edge:'Moss and ivory',outside:'Ivory suit, black boot'}};
+const WHY={own:{inside:'Everything here you have worn and rated five stars. Black on black, one fine chain. No risk, and it still reads dressed.',edge:'Everything here you have worn and rated four stars or more. The frame wants a quiet lower half, so the trouser stays dark. Charcoal against black is a contrast your skin depth carries well, and the room will notice without knowing why.',outside:'You own the crew and the boot. The wide leg turns the crew into a look. Your undertone reads warm enough for both gold and charcoal.'},almost:{inside:'Your ink blazer with a new matching trouser becomes a suit. One purchase, ten looks. The app checks the fit against your shoulder line before it suggests the buy.',edge:'The camel overcoat over cream wide leg trouser. Add a cream knit and you have tonal dressing from the runway feed.',outside:'A black satin shirt under the ink blazer. Open two buttons, gold chain. For dinner with colleagues, this is the one that gets remembered.'},nw:{inside:'Nothing you own, everything you would wear. A charcoal knit polo and pleated trouser in a lighter grey. Zero risk, new energy.',edge:'Moss green is the color your undertone has been waiting for. Paired with ivory it flatters deep skin like nothing in your closet does yet.',outside:'An ivory suit with the shoulder cut clean. Loud without a logo. Your never list is honored: no prints, no sheer.'}};
+const P={own:{inside:[['Black silk shirt','have'],['Black straight denim','have'],['Chelsea boot','have'],['Gold chain, fine','have']],edge:[['Black silk shirt','have'],['Charcoal pleated trouser','have'],['Chelsea boot','have'],['One fine gold chain','have']],outside:[['Bordeaux cashmere crew','have'],['Cream wide leg trouser','have'],['Chelsea boot','have'],['Gold chain, fine','have']]},almost:{inside:[['Ink wool blazer','have'],['Ink wool trouser, matching','need'],['Black silk shirt','have'],['Chelsea boot','have']],edge:[['Camel overcoat','have'],['Cream wide leg trouser','have'],['Cream cashmere knit','need'],['White leather sneaker','have']],outside:[['Ink wool blazer','have'],['Black satin shirt','need'],['Black straight denim','have'],['Chelsea boot','have']]},nw:{inside:[['Charcoal knit polo','need'],['Light grey pleated trouser','need'],['Chelsea boot','have']],edge:[['Moss wool overshirt','need'],['Ivory tee, heavy','need'],['Cream wide leg trouser','have'],['White leather sneaker','have']],outside:[['Ivory double breasted jacket','need'],['Ivory trouser, matching','need'],['Chelsea boot','have'],['Gold chain, fine','have']]}};
+const F={own:{inside:['#141414','#1E1E22','#111'],edge:['#141414','#3A3A3D','#111'],outside:['#5B1F2B','#E6DDCB','#111']},almost:{inside:['#1B1F2A','#1B1F2A','#111'],edge:['#E6DDCB','#E6DDCB','#F2F0EA','','','#B58A5A'],outside:['#141414','#1E1E22','#111','','','#1B1F2A']},nw:{inside:['#3A3A3D','#8A8A8C','#111'],edge:['#EDE6D8','#E6DDCB','#F2F0EA','','','#3F4A3A'],outside:['#EDE6D8','#E6DDCB','#111']}};
+const COLS=[['own','From your closet','own','#6B4423'],['almost','One piece away','','#E8C39E'],['nw','Entirely new','new','#3E2414']];
+let zone='edge';
+function renderCols(){$('#cols').innerHTML=COLS.map(([k,tag,cls,sk])=>{const f=F[k][zone];return `<div class="col"><span class="lanetag ${cls}"><i></i>${tag}</span><h3>${T[k][zone]}.</h3><p class="lede">${WHY[k][zone]}</p><div class="figrow"><div class="figure">${figure(f[0],f[1],f[2],sk,'',f[5]||'')}</div><ul class="pieces">${pcs(P[k][zone])}</ul></div><div class="btnrow"><button class="btn sm" type="button" onclick="toast('Rendered · you, not a model')">See it on me</button><button class="btn sm solid" type="button" onclick="toast('Logged as worn tonight')">Wear</button></div></div>`}).join('')}
+$$('#zonechips .chip').forEach(b=>b.onclick=()=>{zone=b.dataset.z;$$('#zonechips .chip').forEach(x=>x.classList.toggle('on',x===b));renderCols();toast('Three looks re cut')});
+renderCols();
+/* pager */
+const PG=$$('.pg');let cur=0;
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=PG.indexOf(e.target);$('#pg-now').textContent='Page '+e.target.dataset.pg}})},{rootMargin:'-40% 0px -50% 0px'});
+PG.forEach(p=>io.observe(p));
+function nextPage(){const n=PG[(cur+1)%PG.length];n.scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

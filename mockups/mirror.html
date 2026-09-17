@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mirror · Tiffany and Co.</title>
+<meta name="description" content="App first. The Today screen, the three lanes, the comfort dial and See it on me. Tiffany and Co. website mockup three.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+:root{--ivory:#F4EFE6;--ivory-2:#EBE4D8;--paper:#FBF8F2;--linen:#DFD6C7;--onyx:#121110;--onyx-2:#1E1C1A;--graphite:#3A3733;--ash:#6E6963;--mist:#A39D94;--gold:#B8955A;--gold-2:#D4B87C;--gold-dark:#8C6E3B;--bordeaux:#5B1F2B;--moss:#3F4A3A;--r:2px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--onyx);font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.05;text-wrap:balance}
+h1 em,h2 em,h3 em,h4 em,.em{font-style:italic;color:var(--gold-dark)}
+.dark h1 em,.dark h2 em,.dark h3 em,.dark h4 em,.dark .em{color:var(--gold-2)}
+p{margin:0 0 14px;max-width:60ch}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0;text-align:left}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+input{font:inherit;color:inherit}
+.eyebrow{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dark);font-weight:500}
+.dark .eyebrow{color:var(--gold-2)}
+.label{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);font-weight:500}
+.wm{font-family:"Cormorant Garamond",serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.wm em{font-style:italic;text-transform:none;letter-spacing:.02em;color:var(--gold-dark)}
+.dark .wm em{color:var(--gold-2)}
+.btn{display:inline-block;font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:12px 18px;border:1px solid var(--onyx);color:var(--onyx);background:transparent;border-radius:var(--r);font-weight:500;transition:.2s;text-align:center;line-height:1.2;cursor:pointer}
+.btn:hover{background:var(--onyx);color:var(--ivory)}
+.btn.solid{background:var(--onyx);color:var(--ivory)}
+.btn.solid:hover{background:var(--graphite)}
+.btn.sm{padding:9px 13px;font-size:10px}
+.dark .btn{border-color:var(--ivory);color:var(--ivory)}
+.dark .btn:hover{background:var(--ivory);color:var(--onyx)}
+.dark .btn.solid{background:var(--ivory);color:var(--onyx)}
+.dark .btn.solid:hover{background:var(--ivory-2)}
+.dark{background:var(--onyx);color:var(--ivory)}
+.dark p{color:var(--mist)}
+.dark .label{color:var(--mist)}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(244,239,230,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linen)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;position:relative}
+.nav nav{display:flex;gap:22px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.nav nav a{padding:6px 0;border-bottom:1px solid transparent;white-space:nowrap}
+.nav nav a:hover{border-color:var(--gold)}
+.nav .right{display:flex;align-items:center;gap:14px}
+.nav .btn{white-space:nowrap}
+.menu-btn{display:none;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:8px 0}
+.dot{display:inline-block;width:5px;height:5px;background:var(--gold);vertical-align:middle}
+.dot.moss{background:var(--moss)}.dot.bdx{background:var(--bordeaux)}
+.hair{border:0;border-top:1px solid var(--linen);margin:0}
+.lanetag{display:inline-flex;align-items:center;gap:8px;font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.dark .lanetag{color:var(--mist)}
+.lanetag i{width:6px;height:6px;display:inline-block;background:var(--gold);flex:0 0 auto}
+.lanetag.own i{background:var(--moss)}.lanetag.new i{background:var(--bordeaux)}
+.figure svg{width:100%;height:100%;display:block}
+.pieces{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:13.5px}
+.pieces li{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.pieces li span:first-child::before{content:"";display:inline-block;width:5px;height:5px;background:var(--gold);margin-right:10px;vertical-align:middle}
+.st{font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--linen);color:var(--ash);border-radius:var(--r);white-space:nowrap}
+.st.have{border-color:var(--moss);color:var(--moss)}
+.st.need{border-color:var(--bordeaux);color:var(--bordeaux)}
+.dark .st.have{color:#8fa38f;border-color:#8fa38f}.dark .st.need{color:#c98a95;border-color:#c98a95}
+.stars{display:flex;gap:3px}
+.stars button{font-size:18px;line-height:1;color:var(--linen);transition:.15s}
+.stars button.on{color:var(--gold)}
+.dark .stars button{color:var(--graphite)}.dark .stars button.on{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);background:var(--onyx);color:var(--ivory);font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;opacity:0;transition:.25s;pointer-events:none;z-index:80;white-space:nowrap;border-radius:var(--r);max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.foot{border-top:1px solid var(--linen);margin-top:90px;padding:44px 0 52px}
+.foot .wrap{display:grid;gap:18px}
+.foot .tag{font-family:"Cormorant Garamond",serif;font-size:30px;margin:0;line-height:1}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.foot nav a{border-bottom:1px solid transparent;padding-bottom:2px}
+.foot nav a:hover{border-color:var(--gold)}
+.foot small{font-size:11px;color:var(--ash);letter-spacing:.04em;max-width:70ch}
+.sec{padding:clamp(56px,8vw,110px) 0}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(34px,4.6vw,58px)}
+.sec-h p{margin:0;color:var(--ash);max-width:44ch}
+.dark .sec-h p{color:var(--mist)}
+@media (max-width:820px){
+  .nav nav{display:none}
+  .nav.open nav{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--ivory);border-bottom:1px solid var(--linen);padding:18px clamp(16px,4vw,48px) 22px;gap:14px;margin:0 calc(-1 * clamp(16px,4vw,48px))}
+  .menu-btn{display:inline-block}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.hero{padding:clamp(40px,6vw,72px) 0 0;text-align:center}
+.hero h1{font-size:clamp(46px,7vw,96px);line-height:.98;margin:14px auto 18px;max-width:14ch}
+.hero p{margin:0 auto 22px;color:var(--graphite);font-size:16px}
+.hero .btnrow{justify-content:center;margin-bottom:44px}
+.phone{width:390px;max-width:100%;height:820px;margin:0 auto;background:var(--onyx);border-radius:44px;padding:11px;position:relative;border:1px solid var(--graphite)}
+.app{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:var(--ivory);color:var(--onyx);display:flex;flex-direction:column;text-align:left}
+.notch{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:110px;height:28px;border-radius:16px;background:var(--onyx);z-index:5}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:58px 22px 8px;flex:0 0 auto}
+.topbar .wm{font-size:17px}
+.topbar .chip{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);display:flex;align-items:center;gap:6px;font-weight:500}
+.topbar .chip i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+.screens{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative;padding:6px 22px 120px}
+.screens::-webkit-scrollbar{display:none}
+.h-page{margin:6px 0 4px;font-size:32px;line-height:1.02}
+.h-page i{color:var(--gold-dark);font-style:italic}
+.subp{color:var(--ash);font-size:13px;margin:0 0 16px;line-height:1.5}
+.card{border:1px solid var(--linen);padding:16px;background:var(--paper);border-radius:var(--r)}
+.card h4{font-size:22px;margin:0 0 4px}
+.card .meta{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ash);font-weight:500}
+.card p{font-size:13px;color:var(--graphite);margin:8px 0 0}
+.hero-card{position:relative;padding:20px 20px 18px;overflow:hidden;border-radius:var(--r)}
+.hero-card h3{font-size:28px;line-height:1.05;margin:6px 0 10px;color:var(--ivory)}
+.hero-card .fig{position:absolute;right:-4px;bottom:-12px;width:112px;height:200px;opacity:.95}
+.hero-card .pieces{max-width:60%;font-size:12.5px;color:var(--ivory);gap:4px}
+.hero-card .btnrow{margin-top:14px;gap:8px}
+.section{margin-top:24px}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.section-h h3{font-size:21px}
+.section-h a,.section-h button{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);border-bottom:1px solid var(--gold-2);padding-bottom:1px;font-weight:500}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 11px;border:1px solid var(--linen);color:var(--graphite);border-radius:var(--r);font-weight:500;white-space:nowrap;transition:.15s;display:inline-block}
+.chip.on{background:var(--onyx);color:var(--ivory);border-color:var(--onyx)}
+.chips.scroll{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -22px;padding:0 22px}
+.chips.scroll::-webkit-scrollbar{display:none}
+.score{font-family:"Cormorant Garamond",serif;font-size:30px;line-height:1;color:var(--gold-dark)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tabs{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:10px 12px 20px;background:linear-gradient(180deg,rgba(244,239,230,0) 0%,var(--ivory) 30%);z-index:4}
+.tabs a,.tabs button{display:flex;flex-direction:column;align-items:center;gap:5px;font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);padding:6px 0;font-weight:500}
+.tabs svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.tabs .on{color:var(--onyx)}
+.tabs .on::after{content:"";width:14px;height:1px;background:var(--gold)}
+.mic{position:absolute;right:20px;bottom:96px;width:56px;height:56px;border-radius:50%;background:var(--onyx);color:var(--ivory);display:grid;place-items:center;z-index:7;transition:transform .2s,background .2s}
+.mic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round}
+.mic:active{transform:scale(.94)}
+.mic.live{background:var(--bordeaux)}
+.mic.live::before,.mic.live::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--bordeaux);animation:ring 1.6s infinite}
+.mic.live::after{animation-delay:.8s}
+@keyframes ring{from{transform:scale(1);opacity:.7}to{transform:scale(1.5);opacity:0}}
+.mic.edit{background:var(--gold-dark)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--onyx);color:var(--ivory);padding:22px 22px 30px;z-index:6;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.7,.2,1);border-radius:22px 22px 0 0}
+.sheet.open{transform:none}
+.sheet .handle{width:36px;height:3px;background:var(--graphite);margin:0 auto 16px}
+.sheet .mode{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+.sheet .mode b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px}
+.sheet .mode span{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2);font-weight:500;text-align:right}
+.wave{display:flex;gap:3px;align-items:center;height:28px;margin:4px 0 12px}
+.wave i{width:3px;background:var(--gold);height:6px;animation:wv 1s infinite ease-in-out}
+.wave i:nth-child(2n){animation-delay:.15s}.wave i:nth-child(3n){animation-delay:.3s}.wave i:nth-child(5n){animation-delay:.45s}
+.wave.idle i{animation:none;height:4px;background:var(--graphite)}
+@keyframes wv{0%,100%{height:5px}50%{height:24px}}
+.transcript{font-family:"Cormorant Garamond",serif;font-size:21px;line-height:1.3;min-height:78px;color:var(--ivory)}
+.transcript .cur{border-right:1px solid var(--gold);animation:blink 1s infinite}
+.transcript mark{background:rgba(184,149,90,.35);color:var(--ivory)}
+@keyframes blink{50%{border-color:transparent}}
+.sheet .tip{font-size:11px;color:var(--mist);margin:12px 0 0;line-height:1.5}
+.sheet .route{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.sheet .route .btn{border-color:var(--graphite);color:var(--ivory)}
+
+.lanes3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.lane{border:1px solid var(--linen);padding:18px;background:var(--paper);border-radius:var(--r);position:relative;display:grid;gap:10px;align-content:start}
+.lane .tagrow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.lane h4{font-size:26px;line-height:1.05}
+.lane .why{font-size:12.5px;color:var(--ash);line-height:1.5;margin:0 0 10px}
+.lane .figwrap{display:grid;grid-template-columns:74px 1fr;gap:16px;align-items:start}
+.lane .figure{width:74px;height:170px}
+.lane .foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:8px;flex-wrap:wrap;border-top:1px solid var(--linen);padding-top:12px}
+.dialsec .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px);align-items:start}
+.dial{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--onyx);border-radius:var(--r);overflow:hidden;margin-top:8px}
+.dial button{padding:12px 4px;font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);border-right:1px solid var(--onyx);text-align:center;font-weight:500}
+.dial button:last-child{border-right:0}
+.dial button.on{background:var(--onyx);color:var(--ivory)}
+.range{width:100%;accent-color:var(--onyx);margin:10px 0 0}
+.range-l{display:flex;justify-content:space-between;margin-top:6px}
+label.f{display:block;margin:20px 0 6px}
+.chipsx{display:flex;gap:6px;flex-wrap:wrap}
+.out{border:1px solid var(--linen);background:var(--paper);padding:18px 20px;border-radius:var(--r);display:grid;gap:10px}
+.out div{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:baseline;border-bottom:1px dotted var(--linen);padding-bottom:8px}
+.out div:last-child{border:0;padding:0}
+.out b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;line-height:1.1}
+.rendersec .wrap{display:grid;grid-template-columns:auto 1fr;gap:clamp(32px,6vw,90px);align-items:center}
+.overlay{width:min(360px,100%);min-height:560px;border-radius:var(--r);padding:30px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;position:relative;border:1px solid var(--graphite)}
+.overlay h3{font-size:30px;color:var(--ivory)}
+.overlay .prog{width:180px;height:1px;background:var(--graphite);position:relative;overflow:hidden}
+.overlay .prog i{position:absolute;left:0;top:0;bottom:0;width:40%;background:var(--gold);animation:slide 1.2s infinite}
+.overlay.done .prog i{animation:none;left:0;width:100%}
+@keyframes slide{from{left:-40%}to{left:100%}}
+.overlay .render{width:150px;height:260px;display:grid;place-items:center}
+.overlay .render .figure{width:113px;height:260px;opacity:0;transition:opacity .5s}
+.overlay.done .render .figure{opacity:1}
+.overlay p{font-size:12px;color:var(--mist);max-width:30ch;margin:0}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 8px}
+.swatches button{width:26px;height:26px;border-radius:50%;border:2px solid transparent;transition:.15s}
+.swatches button.on{border-color:var(--onyx);transform:scale(1.1)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--onyx);margin-top:30px}
+.three div{padding:26px clamp(16px,3vw,36px) 28px;border-right:1px solid var(--linen);display:grid;gap:10px;align-content:start}
+.three div:last-child{border-right:0}.three div:first-child{padding-left:0}
+.three b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:44px;line-height:1;color:var(--gold-dark)}
+.three h4{font-size:26px}
+.three p{font-size:14px;color:var(--graphite);margin:0}
+.cta{border:1px solid var(--onyx);padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.cta h2{font-size:clamp(40px,6vw,80px);line-height:.95}
+@media (max-width:1000px){.lanes3{grid-template-columns:1fr}.three{grid-template-columns:1fr}.three div{border-right:0;border-bottom:1px solid var(--linen);padding-left:0;padding-right:0}}
+@media (max-width:860px){.dialsec .wrap,.rendersec .wrap,.cta{grid-template-columns:1fr}.overlay{margin:0 auto}}
+@media (max-width:480px){.phone{width:100%;height:760px;border-radius:36px;padding:8px}.app{border-radius:30px}}
+</style>
+</head>
+<body>
+<header class="nav " id="top"><div class="wrap"><a class="wm" href="index.html">Tiffany <em>and</em> Co.</a><nav><a href="#today">Today</a><a href="#lanes">Three lanes</a><a href="#dial">The dial</a><a href="#render">See it on me</a><a href="#voice">The mic</a></nav><div class="right"><a class="btn sm" href="../index.html">Open the app</a><button class="menu-btn" type="button">Menu</button></div></div></header><section class="hero" id="today">
+  <div class="wrap">
+    <div class="eyebrow">The Mirror · app first</div>
+    <h1>Your stylist, in your <em>pocket.</em></h1>
+    <p>It learns your body, your coloring, your closet and your comfort zone. Then it dresses you for the room you are walking into. This is the Today screen. Everything on it works.</p>
+    <div class="btnrow"><a class="btn solid" href="../index.html">Open the prototype</a><a class="btn" href="#lanes">Walk the three lanes</a></div>
+    <div class="phone"><div class="app" id="app">
+      <div class="notch"></div>
+      <header class="topbar"><div class="wm">Tiffany <em>and</em> Co.</div><div class="chip"><i></i><span>Oakland · 64°</span></div></header>
+      <div class="screens" id="screens">
+        <div class="eyebrow">Wednesday evening</div>
+        <h2 class="h-page">Good evening, <i>Ellington.</i></h2>
+        <p class="subp">Dinner with colleagues at 7. Clear, cooling to 58° by 9.</p>
+        <div class="hero-card dark">
+          <div class="eyebrow">Tonight's look · at the edge of your zone</div>
+          <h3>Ink on ink, one warm note.</h3>
+          <ul class="pieces"><li><span>Black silk shirt</span></li><li><span>Charcoal pleated trouser</span></li><li><span>Chelsea boot</span></li><li><span>One fine gold chain</span></li></ul>
+          <div class="btnrow"><button class="btn sm" type="button" onclick="seeOnMe('own')">See it on me</button><a class="btn sm" href="#dial">Change the room</a></div>
+          <div class="fig figure" data-fig="#141414|#3A3A3D|#111|#6B4423"></div>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>Three ways in</h3><a href="#lanes">Open studio</a></div>
+          <div class="chips"><a class="chip on" href="#lanes" onclick="focusLane('own')">From my closet</a><a class="chip" href="#lanes" onclick="focusLane('almost')">One piece away</a><a class="chip" href="#lanes" onclick="focusLane('nw')">Something new</a></div>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>On the horizon</h3><a href="atlas.html">All trips</a></div>
+          <div class="card"><div class="row"><h4>Las Vegas</h4><span class="score">3</span></div><div class="meta">September 25th to 28th · 3 nights · 4 looks planned</div><p>Night 1 is a rooftop dinner. Your camel coat is packed, the rest is on the list.</p></div>
+        </div>
+        <div class="section">
+          <div class="section-h"><h3>Trending for you</h3><button type="button" onclick="toast('Trends live in the prototype')">See all</button></div>
+          <div class="chips scroll"><button class="chip" type="button" onclick="toast('The relaxed suit · 92% match')">The relaxed suit · 92%</button><button class="chip" type="button" onclick="toast('Cream on cream · 88% match')">Cream on cream · 88%</button><button class="chip" type="button" onclick="toast('Bordeaux as a neutral · 85% match')">Bordeaux as a neutral · 85%</button><button class="chip" type="button" onclick="toast('One gold piece · 81% match')">One gold piece · 81%</button></div>
+        </div>
+      </div>
+      <button class="mic" id="mic" type="button" aria-label="Dictate. Double tap to edit."><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></button>
+      <nav class="tabs">
+        <a class="on" href="#today"><svg viewBox="0 0 24 24"><path d="M4 11 L12 4 L20 11 V20 H4 Z"/></svg>Today</a>
+        <a href="#lanes"><svg viewBox="0 0 24 24"><path d="M12 4 v3 M4 17 L12 7 L20 17 Z M4 20 H20"/></svg>Closet</a>
+        <a href="#dial"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 6 v6 l4 2"/></svg>Studio</a>
+        <a href="atlas.html"><svg viewBox="0 0 24 24"><path d="M3 12 L21 4 L15 21 L12 13 Z"/></svg>Travel</a>
+        <a href="#voice"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21 c0 -5 4 -8 8 -8 s8 3 8 8"/></svg>Me</a>
+      </nav>
+      <div class="sheet" id="sheet">
+        <div class="handle"></div>
+        <div class="mode"><b id="sheet-title">Listening</b><span id="sheet-mode">Tap to stop · double tap to edit</span></div>
+        <div class="wave idle" id="wave"></div>
+        <div class="transcript" id="transcript"><span class="cur"></span></div>
+        <p class="tip">Speak naturally. Names and places are kept as you said them. Double tap the mic, then say the change you want.</p>
+        <div class="route"><button class="btn sm" type="button" onclick="sendTranscript()">Send to stylist</button><button class="btn sm" type="button" onclick="closeSheet()">Discard</button></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section class="sec" id="lanes">
+  <div class="wrap">
+    <div class="sec-h"><h2>Three ways <em>in.</em></h2><p>Every look comes three ways. From your closet. One piece away. Entirely new. These are the real lane cards from the studio.</p></div>
+    <div class="lanes3" id="lanes3"></div>
+  </div>
+</section>
+
+<section class="sec dialsec" id="dial" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">The comfort dial</div>
+      <h2 style="font-size:clamp(38px,5vw,66px);margin:14px 0 14px">How far from <em>home.</em></h2>
+      <p>Inside is what you wear most days. At the edge is one step out. Outside is somewhere new. Turn the dial and the three cards above re cut themselves.</p>
+      <label class="f label">The occasion</label>
+      <div class="chipsx" id="occ"></div>
+      <label class="f label">Who is in the room</label>
+      <div class="chipsx" id="aud"></div>
+    </div>
+    <div>
+      <label class="f label" style="margin-top:0">Comfort zone</label>
+      <div class="dial" id="dialc"><button type="button" data-z="inside">Inside</button><button type="button" data-z="edge" class="on">At the edge</button><button type="button" data-z="outside">Outside</button></div>
+      <label class="f label">How daring</label>
+      <input type="range" class="range" min="1" max="5" value="3" id="daring" aria-label="How daring">
+      <div class="range-l"><span class="label">Quiet</span><span class="label" id="daring-l" style="color:var(--onyx)">Considered</span><span class="label">Fearless</span></div>
+      <div class="out" id="out" style="margin-top:22px"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rendersec dark" id="render">
+  <div class="wrap">
+    <div class="overlay" id="overlay">
+      <div class="eyebrow" id="ov-eyebrow">Rendering with image model · 3 reference photos</div>
+      <h3 id="ov-h">Fitting the look to you</h3>
+      <div class="prog"><i></i></div>
+      <div class="render"><div class="figure" id="ov-fig"></div></div>
+      <p id="ov-p">Your scan, your skin tone and your hair are sent as references so the render is you, not a model.</p>
+      <div class="btnrow"><button class="btn sm" type="button" onclick="seeOnMe(curLane)">Render again</button><button class="btn sm solid" type="button" onclick="toast('Saved to your looks')">Save look</button></div>
+    </div>
+    <div>
+      <div class="eyebrow">See it on me</div>
+      <h2 style="font-size:clamp(38px,5vw,66px);margin:14px 0 14px">You, not a <em>model.</em></h2>
+      <p>Three references go to the image engine. Your latest scan. Your skin tone. Your hair. The look comes back on your body in under two seconds. Pick a tone and watch it re render.</p>
+      <div class="label">Every body, every shade</div>
+      <div class="swatches" id="swatches"></div>
+      <p style="font-size:13px">Photos stay on device. Only the render request leaves, encrypted. Swap the engine under Profile in the prototype.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="voice">
+  <div class="wrap">
+    <div class="sec-h"><h2>Tap. Double <em>tap.</em></h2><p>The mic is the fastest way in. Three moves, nothing to learn.</p></div>
+    <div class="three">
+      <div><b>01</b><h4>Tap to speak.</h4><p>Say the room the way you would to a friend. Names and places are kept as you said them.</p><button class="btn sm" type="button" onclick="demoListen()">Try it in the phone</button></div>
+      <div><b>02</b><h4>Tap again to stop.</h4><p>The line goes to the stylist. The look appears in the lane you asked for.</p><button class="btn sm" type="button" onclick="demoStop()">Stop the mic</button></div>
+      <div><b>03</b><h4>Double tap to change it.</h4><p>Say the change, like make that four nights. The app edits the line, not you.</p><button class="btn sm" type="button" onclick="demoEdit()">Edit by voice</button></div>
+    </div>
+    <div class="cta" style="margin-top:60px">
+      <div><div class="eyebrow">The prototype</div><h2 style="margin:12px 0 14px">Look good. Feel <em>good.</em></h2><p style="font-size:16px">Every screen you saw here is live in the prototype. Build your profile in six steps or walk in with the sample.</p></div>
+      <div class="btnrow"><a class="btn solid" href="../index.html">Open the prototype</a><a class="btn" href="index.html">All five mockups</a></div>
+    </div>
+  </div>
+</section>
+<footer class="foot"><div class="wrap"><div class="wm">Tiffany <em>and</em> Co.</div><p class="tag">Look good. Feel <em>good.</em></p><nav><a href="index.html">All mockups</a><a href="../index.html">The app</a><a href="atelier.html">The Atelier</a><a href="editorial.html">The Issue</a><a href="concierge.html">The Concierge</a><a href="atlas.html">The Atlas</a></nav><small>Mockup · September 17th, 2026 · Every stylist response on this page is simulated so the design can be judged. The prototype names the live services behind each one.</small></div></footer>
+<div class="toast" id="toast">Saved</div>
+<script>
+const SKINS=['#FBE8D8','#F3D7BE','#E8C39E','#D9A97C','#C98F5E','#B27A4C','#9A6238','#864F2E','#6B4423','#54331B','#3E2414','#2A170D'];
+function figure(top,bot,shoe,skin,hair,coat){
+  skin=skin||'#6B4423';hair=hair||'#1a1410';
+  const hairShape=hair==='none'?'':`<path d="M34 22 C34 8 66 8 66 22 L66 26 C60 20 40 20 34 26 Z" fill="${hair}"/>`;
+  const coatShape=coat?`<path d="M30 60 L20 64 L14 130 L26 132 L30 100 L30 150 L70 150 L70 100 L74 132 L86 130 L80 64 L70 60 Z" fill="${coat}" opacity=".95"/>`:'';
+  return `<svg viewBox="0 0 100 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="26" r="15" fill="${skin}"/>${hairShape}<rect x="45" y="40" width="10" height="10" fill="${skin}"/><path d="M30 60 L20 64 L14 122 L26 124 L30 96 L30 132 L70 132 L70 96 L74 124 L86 122 L80 64 L70 60 Z" fill="${top}"/>${coatShape}<path d="M31 132 L28 212 L44 212 L50 150 L56 212 L72 212 L69 132 Z" fill="${bot}"/><path d="M27 212 L27 224 L46 224 L46 212 Z" fill="${shoe}"/><path d="M54 212 L54 224 L73 224 L73 212 Z" fill="${shoe}"/></svg>`;
+}
+function drawFigs(root){(root||document).querySelectorAll('[data-fig]').forEach(el=>{const p=el.dataset.fig.split('|');el.innerHTML=figure(p[0],p[1],p[2],p[3]||'',p[4]||'',p[5]||'')})}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(t){let e=$('#toast');if(!e){e=document.createElement('div');e.id='toast';e.className='toast';document.body.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1900)}
+function rate(b,n){const p=b.parentElement;[...p.children].forEach((x,i)=>x.classList.toggle('on',i<n));toast(n+' star'+(n>1?'s':'')+' · remembered')}
+const menuBtn=document.querySelector('.menu-btn');if(menuBtn){menuBtn.onclick=()=>{const n=menuBtn.closest('.nav');n.classList.toggle('open');menuBtn.textContent=n.classList.contains('open')?'Close':'Menu'};document.querySelectorAll('.nav nav a').forEach(a=>a.addEventListener('click',()=>{menuBtn.closest('.nav').classList.remove('open');menuBtn.textContent='Menu'}))}
+drawFigs();
+const ZONES={inside:'Inside your zone',edge:'At the edge',outside:'Outside your zone'};
+const DARING=['Quiet','Calm','Considered','Bold','Fearless'];
+const OCC=['Dinner','Work','Brunch','Date','Gala','Club'];const AUD=['Friends','Colleagues','Strangers','Someone to impress','Clients'];
+let zone='edge',daring=3,occ='Dinner',aud='Colleagues',curLane='own',skin='#6B4423',focus=null;
+const T={own:{inside:'Full black, gold chain',edge:'Ink on ink, one warm note',outside:'Bordeaux head to toe'},almost:{inside:'The relaxed suit',edge:'Camel and cream',outside:'Satin under wool'},nw:{inside:'Charcoal, softened',edge:'Moss and ivory',outside:'Ivory suit, black boot'}};
+const WHY=()=>({own:{inside:`Everything here you have worn and rated five stars. Black on black, one fine chain. No risk, and it still reads dressed.`,edge:`Everything here you have worn and rated four stars or more. The frame wants a quiet lower half, so the trouser stays dark. Charcoal against black is a contrast your skin depth carries well, and ${aud.toLowerCase()} will notice without knowing why.`,outside:`You own the crew and the boot. The wide leg turns the crew into a look. Your undertone reads warm enough for both gold and charcoal.`},almost:{inside:`Your ink blazer with a new matching trouser becomes a suit. One purchase, ten looks.`,edge:`The camel overcoat over cream wide leg trouser. Add a cream knit and you have tonal dressing from the runway feed.`,outside:`A black satin shirt under the ink blazer. Open two buttons, gold chain. For ${occ.toLowerCase()} with ${aud.toLowerCase()}, this is the one that gets remembered.`},nw:{inside:`Nothing you own, everything you would wear. A charcoal knit polo and pleated trouser in a lighter grey. Zero risk, new energy.`,edge:`Moss green is the color your undertone has been waiting for. Paired with ivory it flatters deep skin like nothing in your closet does yet.`,outside:`Daring at ${daring}. An ivory suit with the shoulder cut clean. Loud without a logo. Your never list is honored: no prints, no sheer.`}});
+const P={own:{inside:[['Black silk shirt','have'],['Black straight denim','have'],['Chelsea boot','have'],['Gold chain, fine','have']],edge:[['Black silk shirt','have'],['Charcoal pleated trouser','have'],['Chelsea boot','have'],['One fine gold chain','have']],outside:[['Bordeaux cashmere crew','have'],['Cream wide leg trouser','have'],['Chelsea boot','have'],['Gold chain, fine','have']]},almost:{inside:[['Ink wool blazer','have'],['Ink wool trouser, matching','need'],['Black silk shirt','have'],['Chelsea boot','have']],edge:[['Camel overcoat','have'],['Cream wide leg trouser','have'],['Cream cashmere knit','need'],['White leather sneaker','have']],outside:[['Ink wool blazer','have'],['Black satin shirt','need'],['Black straight denim','have'],['Chelsea boot','have']]},nw:{inside:[['Charcoal knit polo','need'],['Light grey pleated trouser','need'],['Chelsea boot','have']],edge:[['Moss wool overshirt','need'],['Ivory tee, heavy','need'],['Cream wide leg trouser','have'],['White leather sneaker','have']],outside:[['Ivory double breasted jacket','need'],['Ivory trouser, matching','need'],['Chelsea boot','have'],['Gold chain, fine','have']]}};
+const F={own:{inside:['#141414','#1E1E22','#111'],edge:['#141414','#3A3A3D','#111'],outside:['#5B1F2B','#E6DDCB','#111']},almost:{inside:['#1B1F2A','#1B1F2A','#111'],edge:['#E6DDCB','#E6DDCB','#F2F0EA','','','#B58A5A'],outside:['#141414','#1E1E22','#111','','','#1B1F2A']},nw:{inside:['#3A3A3D','#8A8A8C','#111'],edge:['#EDE6D8','#E6DDCB','#F2F0EA','','','#3F4A3A'],outside:['#EDE6D8','#E6DDCB','#111']}};
+const LANES=[['own','From your closet','own','#6B4423'],['almost','One piece away','','#C98F5E'],['nw','Entirely new','new','#2A170D']];
+const pcs=l=>l.map(([n,s])=>`<li><span>${n}</span><span class="st ${s}">${s==='have'?'Own it':'Buy'}</span></li>`).join('');
+function chips(el,items,cur,fn){el.innerHTML=items.map(i=>`<button class="chip ${i===cur?'on':''}" type="button">${i}</button>`).join('');[...el.children].forEach((b,i)=>b.onclick=()=>fn(items[i]))}
+function renderLanes(){
+  const W=WHY();const order=focus?[...LANES].sort((a,b)=>a[0]===focus?-1:b[0]===focus?1:0):LANES;
+  $('#lanes3').innerHTML=order.map(([k,tag,cls,sk])=>{const f=F[k][zone];return `<div class="lane"><div class="tagrow"><span class="lanetag ${cls}"><i></i>${tag}</span><span class="label">${ZONES[zone]} · daring ${daring}</span></div><h4>${T[k][zone]}</h4>
+  <div class="figwrap"><div class="figure">${figure(f[0],f[1],f[2],sk,'',f[5]||'')}</div><div><p class="why">${W[k][zone]}</p><ul class="pieces">${pcs(P[k][zone])}</ul></div></div>
+  <div class="foot"><div class="stars">${[1,2,3,4,5].map(n=>`<button type="button" onclick="rate(this,${n})" aria-label="${n} stars">★</button>`).join('')}</div><div class="btnrow" style="gap:6px"><button class="btn sm" type="button" onclick="seeOnMe('${k}')">See it on me</button>${P[k][zone].some(x=>x[1]==='need')?`<button class="btn sm" type="button" onclick="toast('Two stores within 2 miles')">Nearby</button>`:''}<button class="btn sm solid" type="button" onclick="toast('Logged as worn tonight')">Wear</button></div></div></div>`}).join('');
+  $('#out').innerHTML=LANES.map(([k,tag])=>`<div><span class="label">${tag}</span><b>${T[k][zone]}</b></div>`).join('')+`<div><span class="label">Room</span><span class="label" style="color:var(--onyx)">${occ} · ${aud} · ${ZONES[zone]} · ${DARING[daring-1]}</span></div>`;
+  chips($('#occ'),OCC,occ,v=>{occ=v;renderLanes()});chips($('#aud'),AUD,aud,v=>{aud=v;renderLanes()});
+}
+function focusLane(k){focus=k;renderLanes()}
+$$('#dialc button').forEach(b=>b.onclick=()=>{zone=b.dataset.z;$$('#dialc button').forEach(x=>x.classList.toggle('on',x===b));renderLanes();toast('Three looks re cut')});
+$('#daring').addEventListener('input',e=>{daring=+e.target.value;$('#daring-l').textContent=DARING[daring-1]});
+$('#daring').addEventListener('change',()=>renderLanes());
+renderLanes();
+/* render */
+let rt;
+function seeOnMe(k){curLane=k||'own';const ov=$('#overlay');ov.classList.remove('done');$('#ov-h').textContent='Fitting the look to you';$('#ov-p').textContent='Your scan, your skin tone and your hair are sent as references so the render is you, not a model.';$('#ov-fig').innerHTML='';clearTimeout(rt);
+  if(location.hash!=='#render')location.hash='#render';
+  rt=setTimeout(()=>{const f=F[curLane][zone];$('#ov-fig').innerHTML=figure(f[0],f[1],f[2],skin,'',f[5]||'');ov.classList.add('done');$('#ov-h').textContent='Rendered · '+T[curLane][zone];$('#ov-p').textContent='Your face, your skin tone and your hair carried through. Swipe for a second angle in the full build.'},1700)}
+$('#swatches').innerHTML=SKINS.map(c=>`<button type="button" style="background:${c}" class="${c===skin?'on':''}" aria-label="Skin tone ${c}"></button>`).join('');
+$$('#swatches button').forEach((b,i)=>b.onclick=()=>{skin=SKINS[i];$$('#swatches button').forEach(x=>x.classList.toggle('on',x===b));seeOnMe(curLane)});
+seeOnMe('own');
+/* mic */
+const mic=$('#mic'),sheet=$('#sheet');let listening=false,taps=0,tapT,simT,transcript='';
+const SIM='I am going to Las Vegas for three nights on the 25th. Night one is a rooftop dinner, night two is a show, night three is a club.';
+mic.addEventListener('click',()=>{taps++;clearTimeout(tapT);tapT=setTimeout(()=>{if(taps>=2)startEdit();else toggleListen();taps=0},260)});
+function show(extra){$('#transcript').innerHTML=transcript+(extra||'')+'<span class="cur"></span>'}
+function toggleListen(){if(listening){stopListen(true);return}listening=true;mic.classList.add('live');mic.classList.remove('edit');sheet.classList.add('open');$('#sheet-title').textContent='Listening';$('#sheet-mode').textContent='Tap to stop · double tap to edit';$('#wave').innerHTML='<i></i>'.repeat(26);$('#wave').classList.remove('idle');let i=0;transcript='';clearInterval(simT);simT=setInterval(()=>{i+=2;transcript=SIM.slice(0,i);show();if(i>=SIM.length){clearInterval(simT);stopListen(true)}},38)}
+function stopListen(keep){listening=false;mic.classList.remove('live');clearInterval(simT);$('#wave').classList.add('idle');$('#sheet-title').textContent='Heard';$('#sheet-mode').textContent='Double tap the mic to edit by voice';if(!keep&&!transcript)closeSheet()}
+function startEdit(){if(!transcript){toggleListen();return}stopListen(true);mic.classList.add('edit');sheet.classList.add('open');$('#sheet-title').textContent='Editing';$('#sheet-mode').textContent='Say the change';$('#wave').innerHTML='<i></i>'.repeat(26);$('#wave').classList.remove('idle');const cmd='Make that four nights, and night three is a lounge, not a club.';let i=0;clearInterval(simT);simT=setInterval(()=>{i+=2;show(`<span style="color:var(--gold-2)"> ${cmd.slice(0,i)}</span>`);if(i>=cmd.length){clearInterval(simT);setTimeout(applyEdit,500)}},38)}
+function applyEdit(){transcript=transcript.replace('three nights','<mark>four nights</mark>').replace('night three is a club','night three is a <mark>lounge</mark>');show();mic.classList.remove('edit');$('#wave').classList.add('idle');$('#sheet-title').textContent='Edited';$('#sheet-mode').textContent='Two changes applied';setTimeout(()=>{transcript=transcript.replace(/<\/?mark>/g,'')},2500)}
+function closeSheet(){sheet.classList.remove('open');stopListen(true);transcript='';show();mic.classList.remove('edit')}
+function sendTranscript(){if(!transcript){toast('Nothing to send');return}toast('Trip drafted from your voice');closeSheet()}
+function demoListen(){location.hash='#today';if(!listening){transcript='';toggleListen()}}
+function demoStop(){location.hash='#today';if(listening)stopListen(true);else toast('The mic is not listening')}
+function demoEdit(){location.hash='#today';if(!transcript){transcript=SIM;sheet.classList.add('open');show()}startEdit()}
+</script>
+</body>
+</html>

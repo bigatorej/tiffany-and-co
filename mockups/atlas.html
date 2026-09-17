@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Atlas · Tiffany and Co.</title>
+<meta name="description" content="Travel first. Pack for the plan, not the suitcase. Tiffany and Co. website mockup five.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+:root{--ivory:#F4EFE6;--ivory-2:#EBE4D8;--paper:#FBF8F2;--linen:#DFD6C7;--onyx:#121110;--onyx-2:#1E1C1A;--graphite:#3A3733;--ash:#6E6963;--mist:#A39D94;--gold:#B8955A;--gold-2:#D4B87C;--gold-dark:#8C6E3B;--bordeaux:#5B1F2B;--moss:#3F4A3A;--r:2px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--onyx);font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.05;text-wrap:balance}
+h1 em,h2 em,h3 em,h4 em,.em{font-style:italic;color:var(--gold-dark)}
+.dark h1 em,.dark h2 em,.dark h3 em,.dark h4 em,.dark .em{color:var(--gold-2)}
+p{margin:0 0 14px;max-width:60ch}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0;text-align:left}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+input{font:inherit;color:inherit}
+.eyebrow{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dark);font-weight:500}
+.dark .eyebrow{color:var(--gold-2)}
+.label{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);font-weight:500}
+.wm{font-family:"Cormorant Garamond",serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.wm em{font-style:italic;text-transform:none;letter-spacing:.02em;color:var(--gold-dark)}
+.dark .wm em{color:var(--gold-2)}
+.btn{display:inline-block;font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:12px 18px;border:1px solid var(--onyx);color:var(--onyx);background:transparent;border-radius:var(--r);font-weight:500;transition:.2s;text-align:center;line-height:1.2;cursor:pointer}
+.btn:hover{background:var(--onyx);color:var(--ivory)}
+.btn.solid{background:var(--onyx);color:var(--ivory)}
+.btn.solid:hover{background:var(--graphite)}
+.btn.sm{padding:9px 13px;font-size:10px}
+.dark .btn{border-color:var(--ivory);color:var(--ivory)}
+.dark .btn:hover{background:var(--ivory);color:var(--onyx)}
+.dark .btn.solid{background:var(--ivory);color:var(--onyx)}
+.dark .btn.solid:hover{background:var(--ivory-2)}
+.dark{background:var(--onyx);color:var(--ivory)}
+.dark p{color:var(--mist)}
+.dark .label{color:var(--mist)}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(244,239,230,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linen)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;position:relative}
+.nav nav{display:flex;gap:22px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.nav nav a{padding:6px 0;border-bottom:1px solid transparent;white-space:nowrap}
+.nav nav a:hover{border-color:var(--gold)}
+.nav .right{display:flex;align-items:center;gap:14px}
+.nav .btn{white-space:nowrap}
+.menu-btn{display:none;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:8px 0}
+.dot{display:inline-block;width:5px;height:5px;background:var(--gold);vertical-align:middle}
+.dot.moss{background:var(--moss)}.dot.bdx{background:var(--bordeaux)}
+.hair{border:0;border-top:1px solid var(--linen);margin:0}
+.lanetag{display:inline-flex;align-items:center;gap:8px;font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.dark .lanetag{color:var(--mist)}
+.lanetag i{width:6px;height:6px;display:inline-block;background:var(--gold);flex:0 0 auto}
+.lanetag.own i{background:var(--moss)}.lanetag.new i{background:var(--bordeaux)}
+.figure svg{width:100%;height:100%;display:block}
+.pieces{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:13.5px}
+.pieces li{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.pieces li span:first-child::before{content:"";display:inline-block;width:5px;height:5px;background:var(--gold);margin-right:10px;vertical-align:middle}
+.st{font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--linen);color:var(--ash);border-radius:var(--r);white-space:nowrap}
+.st.have{border-color:var(--moss);color:var(--moss)}
+.st.need{border-color:var(--bordeaux);color:var(--bordeaux)}
+.dark .st.have{color:#8fa38f;border-color:#8fa38f}.dark .st.need{color:#c98a95;border-color:#c98a95}
+.stars{display:flex;gap:3px}
+.stars button{font-size:18px;line-height:1;color:var(--linen);transition:.15s}
+.stars button.on{color:var(--gold)}
+.dark .stars button{color:var(--graphite)}.dark .stars button.on{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);background:var(--onyx);color:var(--ivory);font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;opacity:0;transition:.25s;pointer-events:none;z-index:80;white-space:nowrap;border-radius:var(--r);max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.foot{border-top:1px solid var(--linen);margin-top:90px;padding:44px 0 52px}
+.foot .wrap{display:grid;gap:18px}
+.foot .tag{font-family:"Cormorant Garamond",serif;font-size:30px;margin:0;line-height:1}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--graphite)}
+.foot nav a{border-bottom:1px solid transparent;padding-bottom:2px}
+.foot nav a:hover{border-color:var(--gold)}
+.foot small{font-size:11px;color:var(--ash);letter-spacing:.04em;max-width:70ch}
+.sec{padding:clamp(56px,8vw,110px) 0}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(34px,4.6vw,58px)}
+.sec-h p{margin:0;color:var(--ash);max-width:44ch}
+.dark .sec-h p{color:var(--mist)}
+@media (max-width:820px){
+  .nav nav{display:none}
+  .nav.open nav{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--ivory);border-bottom:1px solid var(--linen);padding:18px clamp(16px,4vw,48px) 22px;gap:14px;margin:0 calc(-1 * clamp(16px,4vw,48px))}
+  .menu-btn{display:inline-block}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.hero{padding:clamp(40px,6vw,80px) 0 clamp(30px,4vw,50px)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center}
+.hero h1{font-size:clamp(46px,6.6vw,96px);line-height:.98;margin:14px 0 20px}
+.hero p{font-size:16px;color:var(--graphite)}
+.map{width:100%;aspect-ratio:1/1;max-width:560px;justify-self:end;position:relative}
+.map svg{width:100%;height:100%;display:block}
+.map .route{stroke-dasharray:4 5;animation:dash 30s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-400}}
+.map .plane{transform-box:fill-box;transform-origin:center}
+.trip{border-top:1px solid var(--onyx);border-bottom:1px solid var(--linen);padding:16px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+.trip b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:30px;line-height:1}
+.nights{display:grid;gap:0;position:relative}
+.night{display:grid;grid-template-columns:150px 110px 1fr;gap:clamp(18px,3vw,40px);padding:34px 0;border-bottom:1px solid var(--linen);align-items:start;position:relative}
+.night:first-child{border-top:1px solid var(--linen)}
+.night .when{display:grid;gap:6px;position:relative;padding-left:22px}
+.night .when::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold)}
+.night .when::after{content:"";position:absolute;left:3px;top:20px;bottom:-60px;border-left:1px dashed var(--linen)}
+.night:last-child .when::after{display:none}
+.night .when b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:26px;line-height:1}
+.night .figure{width:110px;height:253px}
+.night h3{font-size:clamp(28px,3.4vw,40px);line-height:1.02;margin:4px 0 10px}
+.night .why{font-size:14.5px;color:var(--graphite);margin:0 0 14px;max-width:52ch}
+.night .pieces{max-width:420px;margin-bottom:16px}
+.night .alt{font-size:11px;color:var(--ash);letter-spacing:.06em;margin-top:10px}
+.packing{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pack{border:1px solid var(--linen);background:var(--paper);padding:22px 22px 18px;border-radius:var(--r)}
+.pack .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--linen);padding-bottom:12px;margin-bottom:6px}
+.pack h3{font-size:28px}
+.pack ul{list-style:none;padding:0;margin:0}
+.pack li{display:grid;grid-template-columns:18px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dotted var(--linen);font-size:14px}
+.pack li:last-child{border:0}
+.pack .box{width:16px;height:16px;border:1px solid var(--onyx);border-radius:var(--r);position:relative;display:block}
+.pack .box.on::after{content:"";position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid var(--onyx);border-width:0 1px 1px 0;transform:rotate(45deg)}
+.pack li.on span.n{color:var(--ash);text-decoration:line-through;text-decoration-color:var(--linen)}
+.pack .why{font-size:11px;color:var(--ash);letter-spacing:.04em}
+.pack .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-top:14px;margin-top:6px;border-top:1px solid var(--linen)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:start}
+.in{width:100%;border:0;border-bottom:1px solid var(--onyx);background:transparent;padding:10px 0;font-size:20px;font-family:"Cormorant Garamond",serif;color:var(--onyx);border-radius:0}
+.in::placeholder{color:var(--mist)}
+textarea.in{font-family:"Jost",sans-serif;font-size:15px;line-height:1.5;resize:vertical;min-height:72px;font-weight:300}
+label.f{display:block;margin:18px 0 4px}
+.plan-out{border:1px solid var(--linen);background:var(--paper);padding:22px;border-radius:var(--r);display:grid;gap:12px;min-height:200px;align-content:start}
+.plan-out .row{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;border-bottom:1px dotted var(--linen);padding-bottom:10px}
+.plan-out .row:last-child{border:0}
+.plan-out .row .figure{width:34px;height:78px}
+.plan-out b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:20px;line-height:1.1;display:block}
+.plan-out small{font-size:12px;color:var(--ash)}
+.cta{border:1px solid var(--onyx);padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;margin-top:60px}
+.cta h2{font-size:clamp(40px,6vw,80px);line-height:.95}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr}.map{justify-self:center;max-width:460px}.night{grid-template-columns:110px 1fr;grid-template-areas:"when when" "fig body"}.night .when{grid-area:when}.night .figure{grid-area:fig}.night .body{grid-area:body}.night .when::after{display:none}.form{grid-template-columns:1fr}.cta{grid-template-columns:1fr}}
+@media (max-width:640px){.packing{grid-template-columns:1fr}.night{grid-template-columns:1fr;grid-template-areas:"when" "fig" "body"}.night .figure{width:80px;height:184px}}
+</style>
+</head>
+<body>
+<header class="nav " id="top"><div class="wrap"><a class="wm" href="index.html">Tiffany <em>and</em> Co.</a><nav><a href="#plan">The plan</a><a href="#nights">Three nights</a><a href="#packing">Packing</a><a href="#newtrip">New trip</a></nav><div class="right"><a class="btn sm" href="../index.html">Open the app</a><button class="menu-btn" type="button">Menu</button></div></div></header><section class="hero" id="plan">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">The Atlas · travel first</div>
+      <h1>Pack for the <em>plan,</em> not the suitcase.</h1>
+      <p>Say where you are going and what each night holds. The app builds a look per night from your closet, then lists the few pieces worth buying. Nothing packed that you will not wear.</p>
+      <div class="btnrow"><a class="btn solid" href="#nights">See the three nights</a><a class="btn" href="#newtrip">Plan a new trip</a></div>
+    </div>
+    <div class="map" aria-hidden="true">
+      <svg viewBox="0 0 560 560" fill="none" stroke="#DFD6C7" stroke-width="1">
+        <g id="grid"></g>
+        <circle cx="280" cy="280" r="250" stroke="#B8955A" stroke-width=".7"/>
+        <circle cx="280" cy="280" r="200" stroke="#DFD6C7"/>
+        <circle cx="280" cy="280" r="150" stroke="#DFD6C7"/>
+        <g stroke="#B8955A" stroke-width=".7"><path d="M280 20 V60 M280 500 V540 M20 280 H60 M500 280 H540"/><path d="M280 250 L288 280 L280 310 L272 280 Z"/><path d="M250 280 L280 272 L310 280 L280 288 Z"/></g>
+        <path class="route" d="M120 170 C 200 150 300 260 440 400" stroke="#121110" stroke-width="1"/>
+        <g stroke="#121110"><circle cx="120" cy="170" r="4" fill="#F4EFE6"/><circle cx="440" cy="400" r="4" fill="#F4EFE6"/><circle cx="440" cy="400" r="12" stroke="#5B1F2B" stroke-width=".8"/></g>
+        <g font-family="Jost" font-size="10" letter-spacing="2.4" fill="#6E6963" stroke="none"><text x="96" y="152">OAKLAND</text><text x="404" y="436">LAS VEGAS</text><text x="230" y="238">1 H 35 · 508 MI</text></g>
+        <g font-family="Cormorant Garamond" font-size="13" letter-spacing="3" fill="#8C6E3B" stroke="none"><text x="268" y="46">N</text><text x="268" y="530">S</text><text x="38" y="285">W</text><text x="508" y="285">E</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="nights" style="padding-top:20px">
+  <div class="wrap">
+    <div class="trip"><b>Las Vegas</b><span class="label">September 25th to 28th · 3 nights</span><span class="label" id="trip-meta">3 looks · 2 pieces to buy · 64° by day, 74° by night</span></div>
+    <div class="sec-h" style="margin-top:34px"><h2>A look per <em>night.</em></h2><p>Each night is built from your closet first. Swap any look and the packing list updates itself.</p></div>
+    <div class="nights" id="nightlist"></div>
+  </div>
+</section>
+
+<section class="sec" id="packing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><h2>The packing <em>list.</em></h2><p>Split in two. What you own and what is worth buying. Tick as you pack.</p></div>
+    <div class="packing">
+      <div class="pack"><div class="head"><h3><span class="dot moss" style="margin-right:10px"></span>Own it</h3><span class="label" id="own-count"></span></div><ul id="own-list"></ul><div class="foot"><span class="label">From your closet</span><div class="btnrow"><button class="btn sm" type="button" onclick="tickAll(true)">Pack all</button><button class="btn sm" type="button" onclick="tickAll(false)">Clear</button></div></div></div>
+      <div class="pack"><div class="head"><h3><span class="dot bdx" style="margin-right:10px"></span>Worth buying</h3><span class="label" id="buy-count"></span></div><ul id="buy-list"></ul><div class="foot"><span class="label">Two pieces, both worth it</span><div class="btnrow"><button class="btn sm" type="button" onclick="toast('Two stores within 2 miles')">Nearby</button><button class="btn sm" type="button" onclick="toast('Sent to Notes')">Export list</button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="newtrip" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><h2>New <em>trip.</em></h2><p>Say it or type it. The app reads the nights out of the plan.</p></div>
+    <div class="form">
+      <div>
+        <label class="f label" for="trip-where">Where</label><input class="in" id="trip-where" placeholder="Miami">
+        <label class="f label" for="trip-when">When and how long</label><input class="in" id="trip-when" placeholder="October 10th · 2 nights">
+        <label class="f label" for="trip-plan">What each day holds</label><textarea class="in" id="trip-plan" placeholder="Night 1 dinner on the water, day 2 pool then a club"></textarea>
+        <div class="btnrow" style="margin-top:18px"><button class="btn solid" type="button" onclick="planTrip()">Plan my looks</button><button class="btn" type="button" onclick="dictate()">Dictate the plan</button></div>
+      </div>
+      <div class="plan-out" id="plan-out"><span class="eyebrow">Your plan</span><p style="margin:0;color:var(--ash);font-size:14px">Nothing yet. Say where you are going and what each night holds.</p></div>
+    </div>
+    <div class="cta">
+      <div><div class="eyebrow">Look good. Feel good.</div><h2 style="margin:12px 0 14px">Every trip, <em>packed.</em></h2><p style="font-size:16px">The prototype is live. Build your profile in six steps or walk in with the sample and plan your next three nights.</p></div>
+      <div class="btnrow"><a class="btn solid" href="../index.html">Open the prototype</a><a class="btn" href="index.html">All five mockups</a></div>
+    </div>
+  </div>
+</section>
+<footer class="foot"><div class="wrap"><div class="wm">Tiffany <em>and</em> Co.</div><p class="tag">Look good. Feel <em>good.</em></p><nav><a href="index.html">All mockups</a><a href="../index.html">The app</a><a href="atelier.html">The Atelier</a><a href="editorial.html">The Issue</a><a href="mirror.html">The Mirror</a><a href="concierge.html">The Concierge</a></nav><small>Mockup · September 17th, 2026 · Every stylist response on this page is simulated so the design can be judged. The prototype names the live services behind each one.</small></div></footer>
+<div class="toast" id="toast">Saved</div>
+<script>
+const SKINS=['#FBE8D8','#F3D7BE','#E8C39E','#D9A97C','#C98F5E','#B27A4C','#9A6238','#864F2E','#6B4423','#54331B','#3E2414','#2A170D'];
+function figure(top,bot,shoe,skin,hair,coat){
+  skin=skin||'#6B4423';hair=hair||'#1a1410';
+  const hairShape=hair==='none'?'':`<path d="M34 22 C34 8 66 8 66 22 L66 26 C60 20 40 20 34 26 Z" fill="${hair}"/>`;
+  const coatShape=coat?`<path d="M30 60 L20 64 L14 130 L26 132 L30 100 L30 150 L70 150 L70 100 L74 132 L86 130 L80 64 L70 60 Z" fill="${coat}" opacity=".95"/>`:'';
+  return `<svg viewBox="0 0 100 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="26" r="15" fill="${skin}"/>${hairShape}<rect x="45" y="40" width="10" height="10" fill="${skin}"/><path d="M30 60 L20 64 L14 122 L26 124 L30 96 L30 132 L70 132 L70 96 L74 124 L86 122 L80 64 L70 60 Z" fill="${top}"/>${coatShape}<path d="M31 132 L28 212 L44 212 L50 150 L56 212 L72 212 L69 132 Z" fill="${bot}"/><path d="M27 212 L27 224 L46 224 L46 212 Z" fill="${shoe}"/><path d="M54 212 L54 224 L73 224 L73 212 Z" fill="${shoe}"/></svg>`;
+}
+function drawFigs(root){(root||document).querySelectorAll('[data-fig]').forEach(el=>{const p=el.dataset.fig.split('|');el.innerHTML=figure(p[0],p[1],p[2],p[3]||'',p[4]||'',p[5]||'')})}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(t){let e=$('#toast');if(!e){e=document.createElement('div');e.id='toast';e.className='toast';document.body.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1900)}
+function rate(b,n){const p=b.parentElement;[...p.children].forEach((x,i)=>x.classList.toggle('on',i<n));toast(n+' star'+(n>1?'s':'')+' · remembered')}
+const menuBtn=document.querySelector('.menu-btn');if(menuBtn){menuBtn.onclick=()=>{const n=menuBtn.closest('.nav');n.classList.toggle('open');menuBtn.textContent=n.classList.contains('open')?'Close':'Menu'};document.querySelectorAll('.nav nav a').forEach(a=>a.addEventListener('click',()=>{menuBtn.closest('.nav').classList.remove('open');menuBtn.textContent='Menu'}))}
+drawFigs();
+(function(){const g=$('#grid');let s='';for(let i=40;i<560;i+=40)s+=`<path d="M${i} 30 V530"/><path d="M30 ${i} H530"/>`;g.innerHTML=s})();
+const NIGHTS=[
+ {e:'Night 1',w:'Rooftop dinner · 8pm',looks:[
+   {t:'Camel overcoat over black silk',why:'Wind on the roof. The coat does the talking. One gold chain.',p:[['Camel overcoat','have'],['Black silk shirt','have'],['Charcoal pleated trouser','have'],['Chelsea boot','have'],['Gold chain, fine','have']],f:['#141414','#3A3A3D','#111','#6B4423','','#B58A5A'],lane:['own','From your closet']},
+   {t:'Ink blazer, bordeaux crew',why:'Same warmth, no coat. The crew carries the color, the blazer carries the shoulder.',p:[['Ink wool blazer','have'],['Bordeaux cashmere crew','have'],['Charcoal pleated trouser','have'],['Chelsea boot','have']],f:['#5B1F2B','#3A3A3D','#111','#6B4423','','#1B1F2A'],lane:['own','From your closet']}]},
+ {e:'Night 2',w:'A show, then a lounge · 7pm',looks:[
+   {t:'Ink blazer, bordeaux crew, black denim',why:'Bordeaux is your warm note for the night. Keep the rest quiet.',p:[['Ink wool blazer','have'],['Bordeaux cashmere crew','have'],['Black straight denim','have'],['Chelsea boot','have']],f:['#5B1F2B','#1E1E22','#111','#6B4423','','#1B1F2A'],lane:['own','From your closet']},
+   {t:'Cream on cream, camel coat',why:'Tonal ivory head to toe. Your skin depth makes ivory glow under lounge light.',p:[['Ivory knit polo','have'],['Cream wide leg trouser','have'],['Camel overcoat','have'],['White leather sneaker','have']],f:['#EDE6D8','#E6DDCB','#F2F0EA','#6B4423','','#B58A5A'],lane:['own','From your closet']}]},
+ {e:'Night 3',w:'Club · 10pm',looks:[
+   {t:'Black satin shirt, open two buttons',why:'One piece away. The satin shirt is the buy. Everything else you own.',p:[['Black satin shirt','need'],['Black straight denim','have'],['Chelsea boot','have'],['Gold chain, fine','have']],f:['#141414','#1E1E22','#111','#6B4423'],lane:['','One piece away']},
+   {t:'Full black, gold chain',why:'Nothing to buy. A single fine chain and the boot. Already your habit.',p:[['Black silk shirt','have'],['Black straight denim','have'],['Chelsea boot','have'],['Gold chain, fine','have']],f:['#141414','#1E1E22','#111','#6B4423'],lane:['own','From your closet']}]}
+];
+const sel=[0,0,0];const ticks={};
+const pcs=l=>l.map(([n,s])=>`<li><span>${n}</span><span class="st ${s}">${s==='have'?'Own it':'Buy'}</span></li>`).join('');
+function renderNights(){$('#nightlist').innerHTML=NIGHTS.map((n,i)=>{const L=n.looks[sel[i]];return `<div class="night"><div class="when"><b>${n.e}</b><span class="label">${n.w}</span><span class="lanetag ${L.lane[0]}"><i></i>${L.lane[1]}</span></div><div class="figure">${figure(...L.f)}</div><div class="body"><h3>${L.t}.</h3><p class="why">${L.why}</p><ul class="pieces">${pcs(L.p)}</ul><div class="btnrow"><button class="btn sm" type="button" onclick="toast('Rendered · you, not a model')">See it on me</button><button class="btn sm" type="button" onclick="swap(${i})">Swap the look</button><button class="btn sm solid" type="button" onclick="toast('${n.e} locked')">Lock it</button></div><div class="alt">Other option · ${n.looks[1-sel[i]].t}</div></div></div>`}).join('');renderPack()}
+function swap(i){sel[i]=1-sel[i];renderNights();toast(NIGHTS[i].e+' · swapped')}
+function renderPack(){const own=new Set(),buy=new Set();const whyOf={};NIGHTS.forEach((n,i)=>n.looks[sel[i]].p.forEach(([p,s])=>{(s==='have'?own:buy).add(p);whyOf[p]=(whyOf[p]||[]);whyOf[p].push(n.e)}));if(buy.size<2)buy.add('Ivory pocket square');whyOf['Ivory pocket square']=whyOf['Ivory pocket square']||['Night 1'];
+  const row=(p,cls)=>`<li class="${ticks[p]?'on':''}"><button class="box ${ticks[p]?'on':''}" type="button" aria-label="Pack ${p}" onclick="tick('${p.replace(/'/g,"\\'")}')"></button><span class="n">${p}</span><span class="why">${[...new Set(whyOf[p])].join(' · ')}</span></li>`;
+  $('#own-list').innerHTML=[...own].map(p=>row(p,'')).join('');$('#buy-list').innerHTML=[...buy].map(p=>row(p,'')).join('');
+  const oc=[...own].filter(p=>ticks[p]).length,bc=[...buy].filter(p=>ticks[p]).length;$('#own-count').textContent=`${oc} of ${own.size} packed`;$('#buy-count').textContent=`${bc} of ${buy.size} packed`;$('#trip-meta').textContent=`3 looks · ${buy.size} piece${buy.size>1?'s':''} to buy · 64° by day, 74° by night`}
+function tick(p){ticks[p]=!ticks[p];renderPack()}
+function tickAll(v){$$('#own-list .n').forEach(s=>ticks[s.textContent]=v);renderPack();toast(v?'Everything from your closet is packed':'List cleared')}
+renderNights();
+function planTrip(){const w=$('#trip-where').value.trim()||'Miami',when=$('#trip-when').value.trim()||'October 10th · 2 nights',p=$('#trip-plan').value.trim();if(!p){toast('Tell me what each day holds');$('#trip-plan').focus();return}
+  const parts=p.split(/(?=night\s*\d|day\s*\d)/i).map(x=>x.trim()).filter(Boolean);const n=parts.length||2;const cols=[['#141414','#3A3A3D','#111'],['#EDE6D8','#E6DDCB','#F2F0EA'],['#5B1F2B','#1E1E22','#111'],['#EDE6D8','#E6DDCB','#111'],['#1B1F2A','#1B1F2A','#111']];const names=['Ink on ink, one warm note','Cream on cream','Bordeaux and black','Ivory suit, black boot','The relaxed suit'];
+  $('#plan-out').innerHTML=`<span class="eyebrow">${w} · ${when}</span>`+parts.slice(0,5).map((x,i)=>`<div class="row"><div class="figure">${figure(...cols[i%5])}</div><div><b>${names[i%5]}</b><small>${x.replace(/^[,.\s]+/,'')}</small></div></div>`).join('')+`<div class="btnrow"><button class="btn sm solid" type="button" onclick="toast('${w} · ${n} looks saved')">Save the plan</button></div>`;toast(`${w}: ${n} looks planned from your closet`)}
+let dT;function dictate(){const t=$('#trip-plan');const SIM='Night 1 dinner on the water, day 2 pool then a club, night 3 a quiet bar.';let i=0;clearInterval(dT);t.value='';$('#trip-where').value=$('#trip-where').value||'Miami';$('#trip-when').value=$('#trip-when').value||'October 10th · 3 nights';toast('Listening');dT=setInterval(()=>{i+=2;t.value=SIM.slice(0,i);if(i>=SIM.length){clearInterval(dT);toast('Heard · tap Plan my looks')}},38)}
+</script>
+</body>
+</html>
