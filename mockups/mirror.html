@@ -364,12 +364,12 @@ $('#daring').addEventListener('change',()=>renderLanes());
 renderLanes();
 /* render */
 let rt;
-function seeOnMe(k){curLane=k||'own';const ov=$('#overlay');ov.classList.remove('done');$('#ov-h').textContent='Fitting the look to you';$('#ov-p').textContent='Your scan, your skin tone and your hair are sent as references so the render is you, not a model.';$('#ov-fig').innerHTML='';clearTimeout(rt);
-  if(location.hash!=='#render')location.hash='#render';
+function seeOnMe(k,quiet){curLane=k||'own';const ov=$('#overlay');ov.classList.remove('done');$('#ov-h').textContent='Fitting the look to you';$('#ov-p').textContent='Your scan, your skin tone and your hair are sent as references so the render is you, not a model.';$('#ov-fig').innerHTML='';clearTimeout(rt);
+  if(!quiet&&location.hash!=='#render')location.hash='#render';
   rt=setTimeout(()=>{const f=F[curLane][zone];$('#ov-fig').innerHTML=figure(f[0],f[1],f[2],skin,'',f[5]||'');ov.classList.add('done');$('#ov-h').textContent='Rendered · '+T[curLane][zone];$('#ov-p').textContent='Your face, your skin tone and your hair carried through. Swipe for a second angle in the full build.'},1700)}
 $('#swatches').innerHTML=SKINS.map(c=>`<button type="button" style="background:${c}" class="${c===skin?'on':''}" aria-label="Skin tone ${c}"></button>`).join('');
 $$('#swatches button').forEach((b,i)=>b.onclick=()=>{skin=SKINS[i];$$('#swatches button').forEach(x=>x.classList.toggle('on',x===b));seeOnMe(curLane)});
-seeOnMe('own');
+seeOnMe('own',true);
 /* mic */
 const mic=$('#mic'),sheet=$('#sheet');let listening=false,taps=0,tapT,simT,transcript='';
 const SIM='I am going to Las Vegas for three nights on the 25th. Night one is a rooftop dinner, night two is a show, night three is a club.';
