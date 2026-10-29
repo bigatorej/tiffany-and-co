@@ -1,2 +1,2 @@
-# tiffany-and-co
-Tiffany and Co. lifestyle app prototype v0.1
+# Tiffelli
+Tiffelli lifestyle app prototype v0.1, a private preview by Ellington Enterprises with Tiffany Oseguera. Not indexed.
